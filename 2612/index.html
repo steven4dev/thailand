@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>一諾千金・攜手守信｜2026 清邁青年兩天一夜</title>
+<meta name="description" content="2026/12/26–27 泰國清邁青年兩天一夜活動企劃：一諾千金・攜手守信">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;900&display=swap" rel="stylesheet">
+<script>
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem('theme'); } catch (e) {}
+    if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<style>
+  :root {
+    --bg: #faf6ef;
+    --surface: #ffffff;
+    --surface-2: #f3ece1;
+    --ink: #2a241f;
+    --muted: #6f655b;
+    --line: #e4dacb;
+    --accent: #a8322d;
+    --accent-soft: #f6e3df;
+    --gold: #9a6b22;
+    --shadow: 0 1px 2px rgba(60, 40, 20, .06), 0 8px 24px rgba(60, 40, 20, .06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #15120f;
+      --surface: #1e1a16;
+      --surface-2: #26211b;
+      --ink: #eee6da;
+      --muted: #a89b8b;
+      --line: #3a332b;
+      --accent: #e0745f;
+      --accent-soft: #3a211c;
+      --gold: #d4a75a;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #15120f;
+    --surface: #1e1a16;
+    --surface-2: #26211b;
+    --ink: #eee6da;
+    --muted: #a89b8b;
+    --line: #3a332b;
+    --accent: #e0745f;
+    --accent-soft: #3a211c;
+    --gold: #d4a75a;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Noto Sans TC", system-ui, -apple-system, "PingFang TC", "Microsoft JhengHei", sans-serif;
+    font-size: 16px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    transition: background .25s, color .25s;
+  }
+  h1, h2, h3 { font-family: "Noto Serif TC", serif; line-height: 1.3; margin: 0; }
+
+  /* ---------- toolbar ---------- */
+  .toolbar {
+    position: fixed; top: 14px; right: 14px; z-index: 50;
+    display: flex; gap: 8px;
+  }
+  .icon-btn {
+    width: 42px; height: 42px; border-radius: 12px;
+    display: grid; place-items: center;
+    background: var(--surface); color: var(--ink);
+    border: 1px solid var(--line); box-shadow: var(--shadow);
+    cursor: pointer; padding: 0;
+    transition: transform .15s, border-color .15s, color .15s;
+  }
+  .icon-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .icon-btn:active { transform: scale(.95); }
+  .icon-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .icon-btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+  .icon-sun { display: none; }
+  .is-dark .icon-sun { display: block; }
+  .is-dark .icon-moon { display: none; }
+
+  /* ---------- layout ---------- */
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 16px 80px; }
+
+  .hero {
+    min-height: 88vh; display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 0 48px; position: relative;
+  }
+  .seal {
+    width: 84px; height: 84px; border: 2.5px solid var(--accent); border-radius: 14px;
+    display: grid; place-items: center; color: var(--accent);
+    font-family: "Noto Serif TC", serif; font-weight: 900; font-size: 46px;
+    transform: rotate(-6deg); margin-bottom: 28px;
+  }
+  .eyebrow { color: var(--gold); font-weight: 700; letter-spacing: .18em; font-size: 14px; margin-bottom: 12px; }
+  .hero h1 { font-size: clamp(40px, 9vw, 76px); font-weight: 900; letter-spacing: .04em; }
+  .hero h1 .dot { color: var(--accent); }
+  .hero .sub { font-size: clamp(18px, 3.2vw, 22px); color: var(--muted); margin: 18px 0 28px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    padding: 6px 14px; border-radius: 999px; font-size: 14px;
+    background: var(--surface); border: 1px solid var(--line);
+  }
+  .hero blockquote {
+    margin: 36px 0 0; padding: 18px 22px; border-left: 3px solid var(--accent);
+    background: var(--surface); border-radius: 0 12px 12px 0; box-shadow: var(--shadow);
+    font-family: "Noto Serif TC", serif; font-size: 18px; line-height: 1.9;
+  }
+
+  .toc { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 0 0 40px; padding: 16px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: 14px; }
+  .toc a { color: var(--muted); text-decoration: none; }
+  .toc a:hover { color: var(--accent); }
+
+  section.slide { padding: 40px 0; border-bottom: 1px dashed var(--line); scroll-margin-top: 20px; }
+  section.slide:last-of-type { border-bottom: 0; }
+  .sec-num { color: var(--accent); font-family: "Noto Serif TC", serif; font-weight: 900; font-size: 14px; letter-spacing: .15em; }
+  section.slide h2 { font-size: clamp(26px, 5vw, 34px); margin: 6px 0 14px; }
+  section.slide h3 { font-size: 18px; margin: 26px 0 10px; color: var(--gold); }
+  .lead { color: var(--muted); font-size: 17px; margin: 0 0 18px; }
+
+  .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); box-shadow: var(--shadow); }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 560px; }
+  th, td { padding: 10px 14px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+  th { background: var(--surface-2); font-weight: 700; white-space: nowrap; }
+  tr:last-child td { border-bottom: 0; }
+  td.time { white-space: nowrap; font-variant-numeric: tabular-nums; color: var(--muted); }
+  tr.hl td { background: var(--accent-soft); }
+  tr.hl td:nth-child(2) { color: var(--accent); font-weight: 700; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px; box-shadow: var(--shadow); }
+  .card .k { font-family: "Noto Serif TC", serif; font-weight: 900; font-size: 26px; color: var(--accent); }
+  .card p { margin: 6px 0 0; }
+
+  ul, ol { padding-left: 1.4em; margin: 8px 0; }
+  li { margin: 4px 0; }
+  .check { list-style: none; padding-left: 0; }
+  .check li { display: flex; gap: 10px; }
+  .check li::before { content: ""; flex: 0 0 16px; height: 16px; margin-top: 6px; border: 1.75px solid var(--muted); border-radius: 4px; }
+  .note { background: var(--surface-2); border-radius: 12px; padding: 14px 18px; margin-top: 16px; }
+
+  footer { text-align: center; color: var(--muted); font-size: 13px; padding: 24px 16px 40px; }
+
+  /* ---------- presentation mode ---------- */
+  .present-bar { display: none; }
+  body.present { overflow: hidden; }
+  body.present .toc, body.present footer { display: none; }
+  body.present .wrap { max-width: none; padding: 0; }
+  body.present .slide, body.present .hero {
+    display: none; position: fixed; inset: 0; z-index: 10;
+    background: var(--bg); overflow-y: auto;
+    padding: 72px max(16px, calc((100vw - 1100px) / 2)) 96px;
+    border: 0; min-height: 0;
+  }
+  body.present .slide.active, body.present .hero.active { display: flex; flex-direction: column; justify-content: center; animation: fadeIn .35s ease; }
+  body.present .slide.tall.active { justify-content: flex-start; }
+  body.present section.slide h2 { font-size: clamp(30px, 4.5vw, 48px); }
+  body.present .lead { font-size: clamp(17px, 1.8vw, 22px); }
+  body.present table { font-size: clamp(14px, 1.3vw, 18px); }
+  body.present .present-bar {
+    display: flex; align-items: center; gap: 10px;
+    position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 60;
+    background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow);
+    border-radius: 14px; padding: 6px;
+  }
+  .counter { min-width: 64px; text-align: center; font-variant-numeric: tabular-nums; color: var(--muted); font-size: 14px; }
+  .progress { position: fixed; left: 0; top: 0; height: 3px; background: var(--accent); z-index: 60; width: 0; transition: width .3s; display: none; }
+  body.present .progress { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } html { scroll-behavior: auto; } }
+
+  @media (max-width: 600px) {
+    .hero { min-height: 80vh; padding-top: 72px; }
+    th, td { padding: 8px 10px; }
+  }
+  @media print {
+    .toolbar, .present-bar, .toc { display: none !important; }
+    section.slide { break-inside: avoid-page; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<div class="toolbar">
+  <button class="icon-btn" id="themeBtn" type="button" aria-label="切換亮暗模式" title="切換亮暗模式">
+    <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+    <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+  </button>
+  <button class="icon-btn" id="presentBtn" type="button" aria-label="簡報模式" title="簡報模式（← → 換頁，Esc 離開）">
+    <svg id="iconPlay" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M10 8.5v4l3.5-2z"/><path d="M8 20h8M12 16v4"/></svg>
+    <svg id="iconExit" viewBox="0 0 24 24" aria-hidden="true" style="display:none"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+</div>
+
+<main class="wrap">
+
+  <header class="hero" id="cover">
+    <div class="seal" aria-hidden="true">信</div>
+    <div class="eyebrow">2026 泰國清邁青年 · 兩天一夜</div>
+    <h1>一諾千金<span class="dot">・</span>攜手守信</h1>
+    <p class="sub">說到做到，是做人最基本的道理。</p>
+    <div class="chips">
+      <span class="chip">12/26（六）– 12/27（日）</span>
+      <span class="chip">約 20 位青年 · 4 小隊</span>
+      <span class="chip">課程 · 活動 · 晚會 · 分享</span>
+    </div>
+    <blockquote>說出口的話，是一份承諾；做到的那一刻，就是信用。<br>年末兩天一夜，我們攜手在清邁相聚，學做一個說到做到的人，讓彼此成為值得信任的夥伴。</blockquote>
+  </header>
+
+  <nav class="toc" aria-label="目錄">
+    <a href="#s1">活動概要</a><a href="#s2">活動主題</a><a href="#s3">Day1</a><a href="#s4">一諾晚會</a><a href="#s5">Day2</a><a href="#s6">課程專題</a><a href="#s7">分享與追蹤</a><a href="#s8">人力分工</a><a href="#s9">籌備與物資</a><a href="#s10">注意事項</a>
+  </nav>
+
+  <section class="slide" id="s1">
+    <div class="sec-num">01</div>
+    <h2>活動概要</h2>
+    <p class="lead">以「守信」為主軸：課程紮根、活動體驗、晚會立諾、分享收束。</p>
+    <div class="table-wrap"><table>
+      <tr><th>項目</th><th>內容</th></tr>
+      <tr><td>對象</td><td>泰國清邁青年，暫以 20 位規劃，分 4 小隊、每隊 5 人</td></tr>
+      <tr><td>時間</td><td>12/26 08:00 報到 ～ 12/27 15:30 賦歸</td></tr>
+      <tr><td>地點</td><td>待確認（需有佛堂、大教室、戶外空地、男女分間住宿）</td></tr>
+      <tr><td>內容</td><td>4 堂課程專題、團康與大地遊戲、一諾晚會、夜談與心得分享</td></tr>
+      <tr><td>語言</td><td>中文授課、泰文翻譯（專題時間已預留翻譯量）</td></tr>
+    </table></div>
+    <h3>活動目標</h3>
+    <div class="cards">
+      <div class="card"><div class="k">知</div><p>明白「人無信不立」，守信是做人的根本，也是修道的根基。</p></div>
+      <div class="card"><div class="k">行</div><p>每人立下一個「回家就能做到」的守信承諾，由守信夥伴互相提醒 30 天。</p></div>
+      <div class="card"><div class="k">情</div><p>透過小隊與晚會，體會「被信任」的溫暖，建立青年彼此攜手同行的連結。</p></div>
+    </div>
+  </section>
+
+  <section class="slide" id="s2">
+    <div class="sec-num">02</div>
+    <h2>活動主題：一諾千金・攜手守信</h2>
+    <p class="lead">信是五常之一，孔子說「人而無信，不知其可也」。兩天以「承諾」貫穿：第一天認識信，晚上立下承諾，第二天帶著承諾回到生活。</p>
+    <h3>設計原則</h3>
+    <ul>
+      <li><b>守信分三層：</b>對人守信、對團隊守信、對自己與上天守信，四堂專題依此排序。</li>
+      <li><b>從小承諾練起：</b>報到時即立「全程準時」的小隊約定，兩天實際計分。</li>
+      <li><b>課程與活動交錯：</b>每 60 分鐘靜態後接一段動態；專題 60 分鐘實際中文內容約 30–35 分鐘，其餘為翻譯。</li>
+      <li><b>活動結束不是終點：</b>守信夥伴 30 天互相提醒，一年後寄回給自己的信。</li>
+    </ul>
+  </section>
+
+  <section class="slide tall" id="s3">
+    <div class="sec-num">03</div>
+    <h2>Day1｜12/26（六）認識信：對人守信</h2>
+    <p class="lead">從「全程準時」的小隊約定開始，兩堂專題講信的根本與日常，下午以「承諾挑戰」體驗說到做到，晚上在一諾晚會立下承諾。</p>
+    <div class="table-wrap"><table>
+      <tr><th>時間</th><th>單元</th><th>內容重點</th><th>負責</th></tr>
+      <tr><td class="time">07:30–08:00</td><td>早餐</td><td>工作人員先行就位</td><td>膳食組</td></tr>
+      <tr><td class="time">08:00–08:30</td><td>報到、分隊</td><td>領名牌與隊巾；各隊簽下「全程準時」小隊約定</td><td>活動組</td></tr>
+      <tr><td class="time">08:30–09:00</td><td>獻供、燒香叩求</td><td></td><td>佛堂</td></tr>
+      <tr><td class="time">09:00–09:15</td><td>開班</td><td>點傳師開班慈悲</td><td></td></tr>
+      <tr><td class="time">09:15–10:15</td><td>破冰＋小隊成立</td><td>信任破冰（矇眼引路、信任圈），定隊名、隊呼、隊旗</td><td>團康</td></tr>
+      <tr><td class="time">10:15–10:30</td><td>休息</td><td></td><td></td></tr>
+      <tr class="hl"><td class="time">10:30–11:30</td><td>專題一：人無信不立</td><td>信是五常的根本；曾子殺彘、季布一諾等故事</td><td>講師＋翻譯</td></tr>
+      <tr><td class="time">11:30–12:00</td><td>影片賞析＋小隊討論</td><td>一則「守信」主題短片，一個小隊問題</td><td>隊輔</td></tr>
+      <tr><td class="time">12:00–13:00</td><td>午餐、午休</td><td></td><td>膳食組</td></tr>
+      <tr><td class="time">13:00–13:30</td><td>學唱泰國道歌</td><td>帶動喚醒精神，晚會將全體合唱</td><td>歌譜帶動</td></tr>
+      <tr class="hl"><td class="time">13:30–14:30</td><td>專題二：守信在日常</td><td>守時、守約、守分；情境題：遲到、答應朋友的事、借東西、網路發言</td><td>講師＋翻譯</td></tr>
+      <tr><td class="time">14:30–14:45</td><td>休息、點心</td><td></td><td></td></tr>
+      <tr class="hl"><td class="time">14:45–16:15</td><td>大地遊戲：承諾挑戰</td><td>每關先「承諾」能達成的數字，計分看是否說到做到，不看數字大小</td><td>團康＋隊輔</td></tr>
+      <tr><td class="time">16:15–17:30</td><td>動跳教學、小隊節目排練</td><td>全體學一支動跳，後半小隊各自排練</td><td>動跳老師</td></tr>
+      <tr><td class="time">17:30–18:30</td><td>晚餐、盥洗</td><td></td><td>膳食組</td></tr>
+      <tr><td class="time">18:30–18:50</td><td>晚獻香</td><td></td><td>佛堂</td></tr>
+      <tr class="hl"><td class="time">19:00–21:00</td><td>一諾晚會</td><td>詳見晚會企劃</td><td>主持人</td></tr>
+      <tr><td class="time">21:00–21:40</td><td>小隊夜談</td><td>寫「給一年後的自己」信：我答應自己的事</td><td>隊輔</td></tr>
+      <tr><td class="time">21:40–22:30</td><td>盥洗、就寢</td><td>22:30 熄燈，隊輔巡房</td><td>生活組</td></tr>
+    </table></div>
+  </section>
+
+  <section class="slide tall" id="s4">
+    <div class="sec-num">04</div>
+    <h2>一諾晚會（12/26 19:00–21:00）</h2>
+    <p class="lead">熱鬧開場、表演展現、立諾收心；高潮是每人在燈光中立下一個守信承諾。</p>
+    <div class="table-wrap"><table>
+      <tr><th>時間</th><th>節目</th><th>說明</th></tr>
+      <tr><td class="time">19:00–19:10</td><td>開場暖場</td><td>主持人（中泰雙人）、各隊宣告隊呼，公布當天「準時約定」成績</td></tr>
+      <tr><td class="time">19:10–19:50</td><td>小隊表演</td><td>4 隊各 6–8 分鐘：短劇、歌曲、詩朗誦皆可，主題「說到做到的一個故事」</td></tr>
+      <tr><td class="time">19:50–20:00</td><td>全體動跳</td><td>展現下午教學的動跳，邀請工作人員一起跳</td></tr>
+      <tr><td class="time">20:00–20:15</td><td>有獎徵答</td><td>題目取自當天兩堂專題，小隊搶答</td></tr>
+      <tr class="hl"><td class="time">20:15–20:40</td><td>立諾儀式</td><td>燈光調暗，前賢點亮第一盞 LED 燭燈並傳下；每人寫「守信承諾卡」、抽出守信夥伴，兩人互相讀出承諾後貼上「守信牆」</td></tr>
+      <tr><td class="time">20:40–20:55</td><td>前賢勉勵</td><td>以「一諾千金」簡短叮嚀</td></tr>
+      <tr><td class="time">20:55–21:00</td><td>合唱道歌</td><td>全體合唱下午學的泰國道歌，結束</td></tr>
+    </table></div>
+    <h3>籌備要點</h3>
+    <ul>
+      <li>守信承諾卡要具體、可檢驗：範例「接下來 30 天，答應媽媽的事當天做完」，而非「我要做個好人」。</li>
+      <li>小隊表演題目於報到時公布，利用午休與 16:15 後排練。</li>
+      <li>使用 LED 電子燭，不用明火。</li>
+      <li>設「最守信團隊獎」（依準時約定與承諾挑戰成績）、「最佳創意獎」、「最佳人氣獎」，讓每隊都有獎。</li>
+      <li>3 分鐘「今日回顧」影片可加分（攝影組白天拍、晚餐時剪）。</li>
+    </ul>
+  </section>
+
+  <section class="slide tall" id="s5">
+    <div class="sec-num">05</div>
+    <h2>Day2｜12/27（日）帶著承諾回家</h2>
+    <p class="lead">把信從「對人」延伸到「對團隊」與「對自己、對上天」，中午前完成心得分享，下午在感恩與結班中圓滿。</p>
+    <div class="table-wrap"><table>
+      <tr><th>時間</th><th>單元</th><th>內容重點</th><th>負責</th></tr>
+      <tr><td class="time">06:30–07:00</td><td>起床、晨間伸展</td><td>戶外 10 分鐘伸展唱跳</td><td>生活組</td></tr>
+      <tr><td class="time">07:00–07:30</td><td>早餐</td><td></td><td>膳食組</td></tr>
+      <tr><td class="time">07:30–08:00</td><td>整理寢室、行李</td><td></td><td>生活組</td></tr>
+      <tr><td class="time">08:00–08:30</td><td>獻供、燒香叩求</td><td></td><td>佛堂</td></tr>
+      <tr class="hl"><td class="time">08:30–09:30</td><td>專題三：團隊中的信任—西遊記</td><td>師徒四人靠什麼走完取經路；回扣昨天的承諾挑戰</td><td>講師＋翻譯</td></tr>
+      <tr><td class="time">09:30–09:45</td><td>休息</td><td></td><td></td></tr>
+      <tr class="hl"><td class="time">09:45–10:45</td><td>專題四：對自己守信—初心與願力</td><td>守住答應自己、答應上天的事；以清口茹素等修行功課為例</td><td>講師＋翻譯</td></tr>
+      <tr class="hl"><td class="time">10:45–11:45</td><td>心得分享</td><td>小隊分享→每隊推派 1–2 人上台</td><td>隊輔＋主持人</td></tr>
+      <tr><td class="time">11:45–12:05</td><td>午獻香、大合照</td><td></td><td>佛堂＋攝影</td></tr>
+      <tr><td class="time">12:05–13:00</td><td>午餐</td><td></td><td>膳食組</td></tr>
+      <tr><td class="time">13:00–14:00</td><td>感恩園遊會</td><td>各隊擺一個小關卡或小吃攤，用活動代幣交流；亦可改為寫感恩卡</td><td>活動組</td></tr>
+      <tr><td class="time">14:00–14:30</td><td>成果回顧、頒獎</td><td>回顧影片、頒獎；守信夥伴交換聯絡方式，約定 30 天互相提醒</td><td>主持人</td></tr>
+      <tr><td class="time">14:30–15:00</td><td>結班</td><td>點傳師結班慈悲</td><td></td></tr>
+      <tr><td class="time">15:00–15:10</td><td>辭駕</td><td></td><td>佛堂</td></tr>
+      <tr><td class="time">15:10–15:30</td><td>場地復原、賦歸</td><td>全體一起收拾後解散</td><td>全體</td></tr>
+    </table></div>
+  </section>
+
+  <section class="slide tall" id="s6">
+    <div class="sec-num">06</div>
+    <h2>課程專題內容建議</h2>
+    <p class="lead">信是什麼 → 對人守信 → 對團隊守信 → 對自己與上天守信，由外而內，每堂收在一個小隊討論題。</p>
+    <div class="table-wrap"><table>
+      <tr><th>專題</th><th>建議大綱</th><th>互動方式</th><th>收尾討論題</th></tr>
+      <tr><td><b>一、人無信不立</b></td><td>信是五常之一、做人的根本；曾子殺彘、季布一諾、商鞅徙木立信</td><td>「你最信任的人是誰？為什麼？」便利貼分享</td><td>我曾經因為不守信，失去過什麼？</td></tr>
+      <tr><td><b>二、守信在日常</b></td><td>守時、守約、守分；對家人、朋友、同學同事、網路上的自己</td><td>4 則情境題投影，小隊舉牌選擇並說理由</td><td>我最容易失信的是哪一種情況？</td></tr>
+      <tr><td><b>三、團隊中的信任—西遊記</b></td><td>師徒四人個性不同卻走到底：守住對師父的承諾、彼此信任、各盡其職</td><td>回顧「承諾挑戰」：哪一關說到做到、哪一關沒做到？</td><td>在團隊裡，我怎麼做會讓大家更信任我？</td></tr>
+      <tr><td><b>四、對自己守信—初心與願力</b></td><td>對自己的承諾最容易放過；修道就是守住答應上天的事，如清口茹素、日常功課</td><td>寫下「我答應過自己、卻還沒做到的事」</td><td>哪一個對自己的承諾，我想重新開始？</td></tr>
+    </table></div>
+    <h3>給講師的提醒</h3>
+    <ul>
+      <li>投影片中泰雙語，字少圖多，一張一個重點。</li>
+      <li>講稿提前 2 週交翻譯，道場專有名詞先與翻譯對齊泰文譯名。</li>
+      <li>以故事、影片代替長篇道理，每 10 分鐘安排一個互動。</li>
+    </ul>
+  </section>
+
+  <section class="slide" id="s7">
+    <div class="sec-num">07</div>
+    <h2>心得分享與活動後追蹤</h2>
+    <p class="lead">分享分三層累積，再以「守信夥伴」與「一年後的信」延續，讓承諾真的被檢驗。</p>
+    <ol>
+      <li><b>課後 10 分鐘：</b>隊輔以該堂收尾討論題帶小隊輪流說，每人一句也可以。</li>
+      <li><b>夜談 40 分鐘：</b>寫「給一年後的自己」信，內容為「我答應自己的事」；由道場保管，2027 年 12 月寄還。</li>
+      <li><b>Day2 心得分享 60 分鐘：</b>小隊內以分享卡整理 15 分 → 每隊推派 1–2 人上台各 3 分鐘（可用泰文、由翻譯譯中文）35 分 → 前賢回應與總結 10 分。</li>
+      <li><b>活動後 30 天：</b>守信夥伴每週互相提醒一次；隊輔於 LINE 群組發起「守信打卡」，第 30 天邀請大家回報。</li>
+    </ol>
+    <h3>分享卡：三個「一」</h3>
+    <div class="cards">
+      <div class="card"><div class="k">一個收穫</div><p>這兩天我對「信」最深的一個體會。</p></div>
+      <div class="card"><div class="k">一個感動</div><p>讓我感到「被信任」的一個人或一個片刻。</p></div>
+      <div class="card"><div class="k">一個承諾</div><p>回家後我要守住的一個約定（與守信承諾卡一致）。</p></div>
+    </div>
+  </section>
+
+  <section class="slide tall" id="s8">
+    <div class="sec-num">08</div>
+    <h2>人力分工</h2>
+    <p class="lead">工作人員約 15 位，部分職務可兼任（如隊輔兼翻譯、攝影兼音控）。</p>
+    <div class="table-wrap"><table>
+      <tr><th>職務</th><th>人數</th><th>主要工作</th><th>人選</th></tr>
+      <tr><td>總召</td><td>1</td><td>統籌流程、掌控時間調整、對外聯繫</td><td></td></tr>
+      <tr><td>主持人</td><td>2</td><td>中泰雙人主持，串場、晚會、分享</td><td></td></tr>
+      <tr><td>講師</td><td>2–4</td><td>四堂專題，一人至多講兩堂</td><td></td></tr>
+      <tr><td>翻譯</td><td>2</td><td>專題輪流口譯、協助投影片與分享卡譯稿</td><td></td></tr>
+      <tr><td>團康帶動</td><td>1–2</td><td>破冰、承諾挑戰、晨間伸展</td><td></td></tr>
+      <tr><td>動跳老師</td><td>1</td><td>動跳教學、小隊表演指導</td><td></td></tr>
+      <tr><td>隊輔</td><td>4</td><td>每隊 1 位，全程陪伴、帶討論、夜間巡房、30 天追蹤（男女各半）</td><td></td></tr>
+      <tr><td>膳食組</td><td>2–3</td><td>五餐素食、點心、飲水</td><td></td></tr>
+      <tr><td>場佈音控</td><td>1</td><td>音響、投影、晚會燈光</td><td></td></tr>
+      <tr><td>攝影</td><td>1</td><td>拍照、剪輯回顧影片</td><td></td></tr>
+      <tr><td>生活組／醫護</td><td>1</td><td>住宿分配、急救箱、緊急聯絡</td><td></td></tr>
+    </table></div>
+  </section>
+
+  <section class="slide tall" id="s9">
+    <div class="sec-num">09</div>
+    <h2>籌備時程與物資清單</h2>
+    <p class="lead">12/19 前完成所有稿件與物資，留一週緩衝。</p>
+    <h3>籌備時程</h3>
+    <ul class="check">
+      <li>11/07 確認場地、住宿床位、點傳師與講師人選</li>
+      <li>11/14 發布報名訊息（中泰雙語海報）</li>
+      <li>11/21 各講師交專題大綱；團康、承諾挑戰關卡定稿</li>
+      <li>12/05 報名截止、分隊、排床位；講稿與投影片交翻譯</li>
+      <li>12/12 物資採購完成；晚會流程與獎項確認</li>
+      <li>12/19 工作人員行前會、彩排（線上亦可）</li>
+      <li>12/25 場佈、音響投影測試</li>
+    </ul>
+    <h3>物資清單</h3>
+    <div class="table-wrap"><table>
+      <tr><th>類別</th><th>品項</th></tr>
+      <tr><td>報到</td><td>名牌、四色隊巾、小隊約定書、學員手冊（流程、道歌歌詞、小隊討論題）</td></tr>
+      <tr><td>課程</td><td>投影機、筆電、簡報筆、麥克風 ×2、便利貼、影片檔</td></tr>
+      <tr><td>活動</td><td>團康道具、矇眼布、承諾挑戰關卡卡片、計時器、隊旗素材、園遊會代幣</td></tr>
+      <tr><td>晚會</td><td>LED 電子燭 ×35、守信承諾卡、守信夥伴抽籤卡、守信牆看板、獎品、有獎徵答題卡</td></tr>
+      <tr><td>分享</td><td>信紙與信封 ×25、分享卡、結業卡</td></tr>
+      <tr><td>生活</td><td>急救箱、備用毛毯、防蚊液、飲水、垃圾分類袋</td></tr>
+      <tr><td>文件</td><td>報名表、家長同意書（未成年）、緊急聯絡人清單、過敏與特殊需求調查</td></tr>
+    </table></div>
+  </section>
+
+  <section class="slide" id="s10">
+    <div class="sec-num">10</div>
+    <h2>注意事項</h2>
+    <p class="lead">最需要提前確認的是翻譯、住宿安全與未成年學員的家長同意。</p>
+    <ul>
+      <li><b>語言：</b>講師控制語速、句子要短；遊戲規則以示範代替長篇說明。</li>
+      <li><b>天氣：</b>12 月清邁為乾季，早晚溫差大，提醒帶外套；戶外活動避開正午。</li>
+      <li><b>文化：</b>避免摸頭、用腳指人或物；信任類遊戲避免過度身體接觸，男女分組亦需考量。</li>
+      <li><b>住宿：</b>男女分間，各房有隊輔負責；22:30 熄燈後不串門。</li>
+      <li><b>安全：</b>備妥急救箱與附近醫院資訊；泰國緊急醫療 1669、觀光警察 1155；建議辦理活動保險。</li>
+      <li><b>飲食：</b>全程素食，報名時調查過敏與特殊需求。</li>
+      <li><b>彈性：</b>人數增至 30 人以上，改為 5–6 隊，晚會表演每隊縮為 5 分鐘。</li>
+    </ul>
+    <div class="note">
+      <b>待確認事項</b>
+      <ul>
+        <li>場地與住宿地點？</li>
+        <li>學員年齡層（是否有未成年）？是否已求道？</li>
+        <li>專題四若學員多數尚未求道，可改以「對自己守信」為主，淡化願力部分。</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>一諾千金・攜手守信 · 2026 泰國清邁青年兩天一夜活動企劃</footer>
+
+<div class="present-bar" role="toolbar" aria-label="簡報控制">
+  <button class="icon-btn" id="prevBtn" type="button" aria-label="上一頁"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+  <span class="counter" id="counter">1 / 11</span>
+  <button class="icon-btn" id="nextBtn" type="button" aria-label="下一頁"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+</div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var body = document.body;
+
+  /* ----- 亮暗模式 ----- */
+  function isDark() {
+    var t = root.getAttribute('data-theme');
+    if (t) return t === 'dark';
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function syncIcon() { body.classList.toggle('is-dark', isDark()); }
+  document.getElementById('themeBtn').addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    syncIcon();
+  });
+  if (window.matchMedia) {
+    var mq = window.matchMedia('(prefers-color-scheme: dark)');
+    if (mq.addEventListener) mq.addEventListener('change', syncIcon);
+  }
+  syncIcon();
+
+  /* ----- 簡報模式 ----- */
+  var slides = [document.getElementById('cover')].concat(Array.prototype.slice.call(document.querySelectorAll('section.slide')));
+  var idx = 0;
+  var counter = document.getElementById('counter');
+  var progress = document.getElementById('progress');
+  var iconPlay = document.getElementById('iconPlay');
+  var iconExit = document.getElementById('iconExit');
+  var presentBtn = document.getElementById('presentBtn');
+
+  function show(i) {
+    idx = Math.max(0, Math.min(slides.length - 1, i));
+    slides.forEach(function (s, n) { s.classList.toggle('active', n === idx); });
+    slides[idx].scrollTop = 0;
+    counter.textContent = (idx + 1) + ' / ' + slides.length;
+    progress.style.width = ((idx + 1) / slides.length * 100) + '%';
+  }
+  function currentFromScroll() {
+    var best = 0;
+    slides.forEach(function (s, n) { if (s.getBoundingClientRect().top < window.innerHeight * 0.4) best = n; });
+    return best;
+  }
+  function enter() {
+    var start = currentFromScroll();
+    body.classList.add('present');
+    iconPlay.style.display = 'none'; iconExit.style.display = 'block';
+    presentBtn.setAttribute('aria-label', '離開簡報模式');
+    show(start);
+    if (root.requestFullscreen) { root.requestFullscreen().catch(function () {}); }
+  }
+  function exit() {
+    body.classList.remove('present');
+    slides.forEach(function (s) { s.classList.remove('active'); });
+    iconPlay.style.display = 'block'; iconExit.style.display = 'none';
+    presentBtn.setAttribute('aria-label', '簡報模式');
+    if (document.fullscreenElement && document.exitFullscreen) { document.exitFullscreen().catch(function () {}); }
+    slides[idx].scrollIntoView({ block: 'start' });
+  }
+  presentBtn.addEventListener('click', function () { body.classList.contains('present') ? exit() : enter(); });
+  document.getElementById('prevBtn').addEventListener('click', function () { show(idx - 1); });
+  document.getElementById('nextBtn').addEventListener('click', function () { show(idx + 1); });
+
+  document.addEventListener('keydown', function (e) {
+    if (!body.classList.contains('present')) return;
+    if (['ArrowRight', 'PageDown', ' '].indexOf(e.key) > -1) { e.preventDefault(); show(idx + 1); }
+    else if (['ArrowLeft', 'PageUp'].indexOf(e.key) > -1) { e.preventDefault(); show(idx - 1); }
+    else if (e.key === 'Home') { show(0); }
+    else if (e.key === 'End') { show(slides.length - 1); }
+    else if (e.key === 'Escape') { exit(); }
+  });
+  document.addEventListener('fullscreenchange', function () {
+    if (!document.fullscreenElement && body.classList.contains('present')) exit();
+  });
+
+  var x0 = null, y0 = null;
+  document.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+  document.addEventListener('touchend', function (e) {
+    if (!body.classList.contains('present') || x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) show(idx + (dx < 0 ? 1 : -1));
+    x0 = null;
+  }, { passive: true });
+})();
+</script>
+</body>
+</html>
