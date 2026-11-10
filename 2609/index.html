@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>團結力量・凝聚同行｜楊姐公司團建活動</title>
+<meta name="description" content="聖凡兼修團｜楊姐公司「團結力量」團建活動企劃：2026 年 9 月，泰國曼谷">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;900&display=swap" rel="stylesheet">
+<script>
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem('theme'); } catch (e) {}
+    if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<style>
+  :root {
+    --bg: #f4f7f6;
+    --surface: #ffffff;
+    --surface-2: #e9f1ee;
+    --ink: #1c2622;
+    --muted: #5c6b65;
+    --line: #dbe6e1;
+    --accent: #0f6e5c;
+    --accent-soft: #dcefe8;
+    --gold: #a07a1f;
+    --shadow: 0 1px 2px rgba(15, 50, 40, .06), 0 8px 24px rgba(15, 50, 40, .06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #101613;
+      --surface: #19211d;
+      --surface-2: #202a25;
+      --ink: #e7efe9;
+      --muted: #9fb0a8;
+      --line: #2c3a33;
+      --accent: #3fc9a8;
+      --accent-soft: #1b3a32;
+      --gold: #d8b45a;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #101613;
+    --surface: #19211d;
+    --surface-2: #202a25;
+    --ink: #e7efe9;
+    --muted: #9fb0a8;
+    --line: #2c3a33;
+    --accent: #3fc9a8;
+    --accent-soft: #1b3a32;
+    --gold: #d8b45a;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Noto Sans TC", system-ui, -apple-system, "PingFang TC", "Microsoft JhengHei", sans-serif;
+    font-size: 16px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    transition: background .25s, color .25s;
+  }
+  h1, h2, h3 { font-family: "Noto Serif TC", serif; line-height: 1.3; margin: 0; }
+
+  .toolbar { position: fixed; top: 14px; right: 14px; z-index: 50; display: flex; gap: 8px; }
+  .icon-btn {
+    width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center;
+    background: var(--surface); color: var(--ink); border: 1px solid var(--line); box-shadow: var(--shadow);
+    cursor: pointer; padding: 0; transition: transform .15s, border-color .15s, color .15s;
+  }
+  .icon-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .icon-btn:active { transform: scale(.95); }
+  .icon-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .icon-btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+  .icon-sun { display: none; }
+  .is-dark .icon-sun { display: block; }
+  .is-dark .icon-moon { display: none; }
+
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 16px 80px; }
+
+  .hero { min-height: 88vh; display: flex; flex-direction: column; justify-content: center; padding: 80px 0 48px; position: relative; }
+  .seal {
+    width: 84px; height: 84px; border: 2.5px solid var(--accent); border-radius: 50%;
+    display: grid; place-items: center; color: var(--accent);
+    font-family: "Noto Serif TC", serif; font-weight: 900; font-size: 40px;
+    margin-bottom: 28px;
+  }
+  .eyebrow { color: var(--gold); font-weight: 700; letter-spacing: .18em; font-size: 14px; margin-bottom: 12px; }
+  .hero h1 { font-size: clamp(36px, 8vw, 68px); font-weight: 900; letter-spacing: .03em; }
+  .hero h1 .dot { color: var(--accent); }
+  .hero .sub { font-size: clamp(18px, 3.2vw, 22px); color: var(--muted); margin: 18px 0 28px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { padding: 6px 14px; border-radius: 999px; font-size: 14px; background: var(--surface); border: 1px solid var(--line); }
+  .hero blockquote {
+    margin: 36px 0 0; padding: 18px 22px; border-left: 3px solid var(--accent);
+    background: var(--surface); border-radius: 0 12px 12px 0; box-shadow: var(--shadow);
+    font-family: "Noto Serif TC", serif; font-size: 18px; line-height: 1.9;
+  }
+
+  .toc { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 0 0 40px; padding: 16px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: 14px; }
+  .toc a { color: var(--muted); text-decoration: none; }
+  .toc a:hover { color: var(--accent); }
+
+  section.slide { padding: 40px 0; border-bottom: 1px dashed var(--line); scroll-margin-top: 20px; }
+  section.slide:last-of-type { border-bottom: 0; }
+  .sec-num { color: var(--accent); font-family: "Noto Serif TC", serif; font-weight: 900; font-size: 14px; letter-spacing: .15em; }
+  section.slide h2 { font-size: clamp(24px, 5vw, 32px); margin: 6px 0 14px; }
+  section.slide h3 { font-size: 18px; margin: 26px 0 10px; color: var(--gold); }
+  .lead { color: var(--muted); font-size: 17px; margin: 0 0 18px; }
+
+  .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); box-shadow: var(--shadow); }
+  table { width: 100%; border-collapse: collapse; font-size: 14.5px; min-width: 560px; }
+  th, td { padding: 9px 13px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+  th { background: var(--surface-2); font-weight: 700; white-space: nowrap; }
+  tr:last-child td { border-bottom: 0; }
+  td.time { white-space: nowrap; font-variant-numeric: tabular-nums; color: var(--muted); }
+  tr.hl td { background: var(--accent-soft); }
+  tr.hl td:nth-child(2) { color: var(--accent); font-weight: 700; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px; box-shadow: var(--shadow); }
+  .card .k { font-family: "Noto Serif TC", serif; font-weight: 900; font-size: 24px; color: var(--accent); }
+  .card p { margin: 6px 0 0; }
+
+  ul, ol { padding-left: 1.4em; margin: 8px 0; }
+  li { margin: 4px 0; }
+  .note { background: var(--surface-2); border-radius: 12px; padding: 14px 18px; margin-top: 16px; }
+
+  /* game detail cards */
+  .game {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+    margin-bottom: 12px; box-shadow: var(--shadow); overflow: hidden;
+  }
+  .game summary {
+    cursor: pointer; list-style: none; padding: 16px 18px; display: flex; align-items: center; gap: 12px;
+    font-family: "Noto Serif TC", serif; font-weight: 700; font-size: 17px;
+  }
+  .game summary::-webkit-details-marker { display: none; }
+  .game summary .idx {
+    flex: 0 0 auto; width: 30px; height: 30px; border-radius: 50%; background: var(--accent-soft); color: var(--accent);
+    display: grid; place-items: center; font-size: 14px; font-weight: 900;
+  }
+  .game summary .time { margin-left: auto; font-size: 13px; color: var(--muted); font-weight: 400; white-space: nowrap; }
+  .game summary .chev { flex: 0 0 auto; width: 16px; height: 16px; transition: transform .2s; color: var(--muted); }
+  .game[open] summary .chev { transform: rotate(90deg); }
+  .game .body { padding: 0 18px 20px; border-top: 1px solid var(--line); }
+  .game .body h4 { font-size: 13px; letter-spacing: .08em; color: var(--gold); margin: 16px 0 6px; font-family: "Noto Sans TC", sans-serif; font-weight: 700; }
+  .game .body p, .game .body ul { margin: 4px 0; font-size: 15px; }
+  .game .next { margin-top: 14px; padding: 10px 14px; background: var(--surface-2); border-radius: 10px; font-size: 14px; color: var(--muted); font-style: italic; }
+
+  footer { text-align: center; color: var(--muted); font-size: 13px; padding: 24px 16px 40px; }
+
+  .present-bar { display: none; }
+  body.present { overflow: hidden; }
+  body.present .toc, body.present footer { display: none; }
+  body.present .wrap { max-width: none; padding: 0; }
+  body.present .slide, body.present .hero {
+    display: none; position: fixed; inset: 0; z-index: 10; background: var(--bg); overflow-y: auto;
+    padding: 72px max(16px, calc((100vw - 1100px) / 2)) 96px; border: 0; min-height: 0;
+  }
+  body.present .slide.active, body.present .hero.active { display: flex; flex-direction: column; justify-content: center; animation: fadeIn .35s ease; }
+  body.present .slide.tall.active { justify-content: flex-start; }
+  body.present section.slide h2 { font-size: clamp(28px, 4.5vw, 44px); }
+  body.present .lead { font-size: clamp(17px, 1.8vw, 22px); }
+  body.present table { font-size: clamp(13px, 1.3vw, 17px); }
+  body.present .present-bar {
+    display: flex; align-items: center; gap: 10px; position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 60;
+    background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); border-radius: 14px; padding: 6px;
+  }
+  .counter { min-width: 64px; text-align: center; font-variant-numeric: tabular-nums; color: var(--muted); font-size: 14px; }
+  .progress { position: fixed; left: 0; top: 0; height: 3px; background: var(--accent); z-index: 60; width: 0; transition: width .3s; display: none; }
+  body.present .progress { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } html { scroll-behavior: auto; } }
+
+  @media (max-width: 600px) {
+    .hero { min-height: 80vh; padding-top: 72px; }
+    th, td { padding: 8px 10px; }
+  }
+  @media print {
+    .toolbar, .present-bar, .toc { display: none !important; }
+    section.slide { break-inside: avoid-page; }
+    .game { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<div class="toolbar">
+  <button class="icon-btn" id="themeBtn" type="button" aria-label="切換亮暗模式" title="切換亮暗模式">
+    <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+    <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+  </button>
+  <button class="icon-btn" id="presentBtn" type="button" aria-label="簡報模式" title="簡報模式（← → 換頁，Esc 離開）">
+    <svg id="iconPlay" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M10 8.5v4l3.5-2z"/><path d="M8 20h8M12 16v4"/></svg>
+    <svg id="iconExit" viewBox="0 0 24 24" aria-hidden="true" style="display:none"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+</div>
+
+<main class="wrap">
+
+  <header class="hero" id="cover">
+    <div class="seal" aria-hidden="true">結</div>
+    <div class="eyebrow">聖凡兼修團 · 泰國曼谷</div>
+    <h1>團結力量<span class="dot">・</span>凝聚同行</h1>
+    <p class="sub">楊姐公司「團結力量」團建活動企劃</p>
+    <div class="chips">
+      <span class="chip">2026 年 9 月 · 上午 09:00–12:00</span>
+      <span class="chip">約 26–36 位員工 · 3–4 小隊</span>
+      <span class="chip">6 項主要活動 · 14 項備用活動</span>
+    </div>
+    <blockquote>一根筷子很容易折斷，但一把筷子，誰也折不斷。<br>這一次，我們從台灣飛來泰國，不是來教道理，而是用遊戲，陪大家一起把「團結」玩出來。</blockquote>
+  </header>
+
+  <nav class="toc" aria-label="目錄">
+    <a href="#s1">活動概要</a><a href="#s2">流程時間表</a><a href="#s3">主要活動</a><a href="#s4">備用活動</a><a href="#s5">道具清單</a><a href="#s6">配樂清單</a><a href="#s7">備註與待確認</a>
+  </nav>
+
+  <section class="slide" id="s1">
+    <div class="sec-num">01</div>
+    <h2>活動概要</h2>
+    <p class="lead">應楊姐邀請，聖凡兼修團前往泰國曼谷其公司，為員工帶一場上午的團建活動；下午另有消防安全課程。</p>
+    <div class="table-wrap"><table>
+      <tr><th>項目</th><th>內容</th></tr>
+      <tr><td>對象</td><td>楊姐公司員工，出席約 26–36 人，年齡層 26–55 歲；活動當天為正常上班日（非加班）的教育訓練時段</td></tr>
+      <tr><td>時間</td><td>09:00–12:00（共 3 小時），下午另安排消防安全課程</td></tr>
+      <tr><td>地點</td><td>泰國曼谷，楊姐公司場地</td></tr>
+      <tr><td>分組</td><td>依實際出席人數彈性分 3–4 組，採「年齡 S 型交叉編排」避免同組年齡過於集中；本企劃以「3 組、每組 8 人」為基準</td></tr>
+      <tr><td>語言</td><td>中文主持，楊姐現場即時口譯成泰文；另備有泰文版企劃文件（文中「楊姐」改稱 คุณเจน）</td></tr>
+      <tr><td>設計原則</td><td>因「男女授受不親」原則，所有活動均<b>無肢體接觸</b>設計；引導行動不便的隊友一律僅用口頭指令</td></tr>
+    </table></div>
+    <h3>核心精神</h3>
+    <div class="cards">
+      <div class="card"><div class="k">團結</div><p>不是靠一兩個人厲害，而是每個人都被安排在適合自己的位置上。</p></div>
+      <div class="card"><div class="k">互助</div><p>精細動作與口頭指揮的默契，讓隊友補位、喊話成為自然反應。</p></div>
+      <div class="card"><div class="k">同理心</div><p>矇眼、被指揮、只有一次機會的壓力，換位感受彼此的處境。</p></div>
+    </div>
+  </section>
+
+  <section class="slide tall" id="s2">
+    <div class="sec-num">02</div>
+    <h2>整體流程時間表</h2>
+    <p class="lead">由淺入深、逐步熱絡：先以低壓力的合力拍球、堆疊協調暖身，進入需要口頭引導與信任的關卡，考驗精細默契與非語言同步，以「解鈴還須繫鈴人」作高潮挑戰，最後打破小組界線、全公司一起完成同一目標收尾。每個主要活動之間安排 3 分鐘串場。</p>
+    <div class="table-wrap"><table>
+      <tr><th>時間</th><th>時長</th><th>內容</th><th>類型</th></tr>
+      <tr><td class="time">09:00–09:05</td><td>5分</td><td>楊姐致詞</td><td>開場致詞</td></tr>
+      <tr><td class="time">09:05–09:10</td><td>5分</td><td>魏點傳師致詞</td><td>開場致詞</td></tr>
+      <tr><td class="time">09:10–09:13</td><td>3分</td><td>主持人說明身份與來意</td><td>開場引言</td></tr>
+      <tr class="hl"><td class="time">09:13–09:26</td><td>13分</td><td>活動一：全員擊球挑戰</td><td>主要活動</td></tr>
+      <tr><td class="time">09:26–09:29</td><td>3分</td><td>結語＋帶入下一關</td><td>串場</td></tr>
+      <tr class="hl"><td class="time">09:29–09:45</td><td>16分</td><td>活動二：紙杯金字塔（拉繩套杯版）</td><td>主要活動</td></tr>
+      <tr><td class="time">09:45–09:48</td><td>3分</td><td>結語＋帶入下一關</td><td>串場</td></tr>
+      <tr class="hl"><td class="time">09:48–09:59</td><td>11分</td><td>活動三：矇眼踩杯挑戰｜踏地雷</td><td>主要活動</td></tr>
+      <tr><td class="time">09:59–10:02</td><td>3分</td><td>結語＋帶入中場休息</td><td>串場</td></tr>
+      <tr><td class="time">10:02–10:12</td><td>10分</td><td>飲水／洗手間</td><td>中場休息</td></tr>
+      <tr><td class="time">10:12–10:15</td><td>3分</td><td>結語＋帶入下一關</td><td>串場</td></tr>
+      <tr class="hl"><td class="time">10:15–10:41</td><td>26分</td><td>活動四：解鈴還須繫鈴人｜Untie What You Tied（高潮重頭戲）</td><td>主要活動</td></tr>
+      <tr><td class="time">10:41–10:44</td><td>3分</td><td>結語＋帶入下一關</td><td>串場</td></tr>
+      <tr class="hl"><td class="time">10:44–11:05</td><td>21分</td><td>活動五：乾坤大挪移｜Binggo</td><td>主要活動</td></tr>
+      <tr><td class="time">11:05–11:08</td><td>3分</td><td>結語＋帶入下一關</td><td>串場</td></tr>
+      <tr class="hl"><td class="time">11:08–11:36</td><td>28分</td><td>活動六：配數蹲下（全場收尾活動）</td><td>主要活動</td></tr>
+      <tr><td class="time">11:36–11:41</td><td>5分</td><td>魏點傳師致詞</td><td>結尾致詞</td></tr>
+      <tr><td class="time">11:41–11:46</td><td>5分</td><td>楊姐致詞</td><td>結尾致詞</td></tr>
+      <tr><td class="time">11:46–12:00</td><td>14分</td><td>表揚／談心時間</td><td>收尾</td></tr>
+    </table></div>
+    <div class="note">每個主要活動固定三階段：規則講解 → 分組進行 → 分組分享（題目傳達由楊姐口譯 0.5 分＋小組討論 1 分＋1–2 組代表分享含口譯 1.5 分，合計 3 分）。</div>
+  </section>
+
+  <section class="slide tall" id="s3">
+    <div class="sec-num">03</div>
+    <h2>主要活動六項</h2>
+    <p class="lead">依序操作，每項含規則、道具與分組分享題目。點擊展開查看完整內容。</p>
+
+    <details class="game" open>
+      <summary><span class="idx">1</span>全員擊球挑戰<span class="time">約 13 分鐘</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></summary>
+      <div class="body">
+        <h4>道具</h4>
+        <p>大氣球／沙灘球（選飄速較慢的大顆氣球）、打氣筒、眼罩（可用口罩替代；若安排不便角色矇眼上場，每人應用個人專屬 1 個，不共用）</p>
+        <h4>玩法規則</h4>
+        <p>每組 8 人合力以拍打方式讓氣球或沙灘球連續不落地，目標累積達成 30 下；時間允許可自訂進階目標（達成 30 下後全組原地轉圈一次再繼續累積）。「不便角色」可安排輪流上場（例如矇眼者安排其中一棒，其餘隊友用口頭喊聲提示球的方向），不涉及身體接觸。</p>
+        <h4>融入意涵</h4>
+        <p>全員參與、共同達標、換位思考出場順序安排——「團結不是靠一兩個人厲害，而是每個人都被安排在適合自己的位置上」。</p>
+        <h4>分組分享題目</h4>
+        <ul>
+          <li>全組一起拍球時，誰負責喊節奏、誰負責補位？</li>
+          <li>如果只有你一個人，能撐幾下？團隊合作帶來了什麼不同？</li>
+          <li>中途球快掉的時候，大家是怎麼反應、怎麼補救的？</li>
+          <li>如果組裡有人一直失誤，你會怎麼調整心態或做法？</li>
+        </ul>
+        <div class="next">➡️ 銜接下一關：「一根筷子很容易折斷，但一把筷子，誰也折不斷。」</div>
+      </div>
+    </details>
+
+    <details class="game">
+      <summary><span class="idx">2</span>紙杯金字塔（拉繩套杯版）<span class="time">約 16 分鐘</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></summary>
+      <div class="body">
+        <h4>道具</h4>
+        <p>紙杯 30 只（每組至少 10 個）、橡皮筋 4 條、約 60 公分細繩 15 條（每條橡皮筋綁 5 條：4 條供 4 人同時拉繩＋1 條備用）</p>
+        <h4>玩法規則</h4>
+        <p>每組 8 人分 2 批、每批 4 人持繩圍站一圈，全程禁止用手直接碰觸紙杯，只能靠 4 人同時往外拉繩、讓橡皮筋撐開「套住」桌上紙杯，放鬆力道則讓橡皮筋收緊固定住杯子，靠此方式運送 10 個紙杯逐一疊成金字塔造型。完成後換另一批組員，直到完成建造，比較團隊完成時間。</p>
+        <h4>融入意涵</h4>
+        <p>精細動作協調、team work、力道一致；考驗 4 人同步施力的默契。</p>
+        <h4>分組分享題目</h4>
+        <ul>
+          <li>堆疊過程中哪一步最容易失敗？後來怎麼調整？</li>
+          <li>四個人同時拉繩時，怎麼喬出一致力道？</li>
+          <li>拉繩套杯需要更多什麼樣的默契？</li>
+          <li>如果要教一組新手玩這個遊戲，你會提醒他們什麼？</li>
+        </ul>
+        <div class="next">➡️ 銜接下一關：「一個人能做的很少，但一群人一起，能做的事情非常多。」——海倫凱勒</div>
+      </div>
+    </details>
+
+    <details class="game">
+      <summary><span class="idx">3</span>矇眼踩杯挑戰｜踏地雷<span class="time">約 11 分鐘</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></summary>
+      <div class="body">
+        <h4>道具</h4>
+        <p>紙杯 10 只（3 組共用目標物，1 個居中、9 個環繞）、眼罩（可用口罩替代，每人輪流矇眼，個人專屬不共用）</p>
+        <h4>玩法規則</h4>
+        <p>3 組圍成一個大圓，中間地上擺放 10 個紙杯。各組輪流派出挑戰者矇眼站在起點線，全組僅能用口頭指令（前、後、左、右、停、抓）引導定位，不得碰觸挑戰者身體。聽到「抓」須立刻蹲下雙手合併抓起，<b>僅能盲抓一次</b>——抓到哪一杯就是哪一杯，不能調整、不能重抓。抓到目標杯得 1 分，抓空立即換下一位，比較哪組分數最高。</p>
+        <h4>融入意涵</h4>
+        <p>全員即時口頭指揮、把握唯一機會前的精準判斷、面對壓力的團隊信任。</p>
+        <h4>分組分享題目</h4>
+        <ul>
+          <li>矇眼站上去、只能盲抓一次的那一刻，心裡在想什麼？</li>
+          <li>隊友的口頭指令，哪一種說法最容易讓你精準定位？</li>
+          <li>抓錯之後，下一位挑戰者怎麼運用前面經驗調整？</li>
+          <li>這個「只有一次機會」的壓力，跟工作中哪些場合很像？</li>
+        </ul>
+        <div class="next">➡️ 銜接下一關（中場休息後）：「三個臭皮匠，勝過一個諸葛亮。」</div>
+      </div>
+    </details>
+
+    <details class="game">
+      <summary><span class="idx">4</span>解鈴還須繫鈴人｜Untie What You Tied <span class="time">約 26 分鐘 · 高潮重頭戲</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></summary>
+      <div class="body">
+        <h4>道具</h4>
+        <p>繩子 4 條（建議 4 種不同顏色以利觀察者辨識）</p>
+        <h4>玩法規則</h4>
+        <p>8 名玩家兩兩一組、共 4 對，每對共用一條繩子，繩子兩端分別綁在兩人一隻腳踝上，8 人圍成圓圈站立。<b>繫鈴階段</b>（限時約 1 分鐘）：主持人透過指令讓玩家換位，移動時遇到別組繩索只能抬腳跨越，經過 3–4 次隨機換位後全員定格，場中央繩子已層層交疊。<b>解鈴階段</b>：由 1–2 名觀察者站在圓圈外圍，找出目前最上層（沒被壓住）的繩子，依序發號施令指揮玩家反向跨越；場內 8 人須嚴格服從觀察者指令，依「後進先出」順序不斷剝離最上層繩子，最終將 4 條繩索完全分開即獲勝。</p>
+        <h4>融入意涵</h4>
+        <p>合作解謎、精準溝通、面對複雜困境的耐心與信任——「場內的人完全看不到全局，只能相信觀察者的指令，這跟工作中『上級看得到全局、基層只能照指令行動』的情況像不像？」</p>
+        <h4>分組分享題目</h4>
+        <ul>
+          <li>剛剛「繫鈴」的時候，大家有沒有想過等一下要怎麼解開？還是完全交給觀察者？</li>
+          <li>聽觀察者下指令、盲目相信對方看到的東西而行動，這種「被指揮」的感覺讓你想到工作中的什麼情況？</li>
+          <li>如果沒有觀察者在外面看全局，你覺得光靠場內 8 個人自己看得出解法嗎？</li>
+          <li>這個活動比其他活動更燒腦、更需要耐心，你覺得團隊在面對複雜問題時，最容易卡住的地方是什麼？</li>
+        </ul>
+        <div class="next">➡️ 銜接下一關：「一個人走得快，一群人走得遠。」</div>
+      </div>
+    </details>
+
+    <details class="game">
+      <summary><span class="idx">5</span>乾坤大挪移｜Binggo<span class="time">約 21 分鐘</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></summary>
+      <div class="body">
+        <h4>道具</h4>
+        <p>大型格板 3 只（16 宮格，每組 1 只，可用電火布標線取代）、撲克牌（黑桃 J／紅心 Q／方塊 K 各一組目標牌＋14 張填充牌）、題目對照板 1 張（場地正中央）</p>
+        <h4>玩法規則</h4>
+        <p>3 組前方各放一組 16 宮格格板，15 格放撲克牌、1 格留空，每組僅 1 張是本組要找的目標牌。隊員排成一縱隊，裁判發令後三組同時出發，第一位隊員衝向本組格板，<b>一次只能移動 1 張牌</b>，完成一次移動立刻跑步折返擊掌交棒，持續推移直到目標牌抵達題目對照板指定格子；最快讓目標牌歸位的那一組獲勝。</p>
+        <h4>融入意涵</h4>
+        <p>接力奔跑的速度、空間位移的判斷力、團隊間的默契溝通。純競速與空間規劃的接力遊戲，不涉及蓋牌記憶，全程無肢體接觸。</p>
+        <h4>分組分享題目</h4>
+        <ul>
+          <li>衝到格板前要決定怎麼移動時，你是憑什麼很快做出決定的？</li>
+          <li>有沒有移錯位置或跑錯棒的經驗？當下隊友怎麼反應？</li>
+          <li>三組同時比賽的時候，會不會被其他組的速度影響自己的節奏？</li>
+          <li>這種「接力＋即時判斷」的節奏，跟工作中哪些場合很像？</li>
+        </ul>
+        <div class="next">➡️ 銜接下一關：「眾人拾柴火焰高。」</div>
+      </div>
+    </details>
+
+    <details class="game">
+      <summary><span class="idx">6</span>配數蹲下（全場收尾活動）<span class="time">約 28 分鐘</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></summary>
+      <div class="body">
+        <h4>道具</h4>
+        <p>撲克牌一副（每人 1 張，含鬼牌）</p>
+        <h4>玩法規則</h4>
+        <p>關主宣布一個目標數字，玩家利用手上撲克牌點數，透過加減乘除湊出該數字（J、Q、K 皆代表 10，鬼牌代表任意數），可自由跨組尋找夥伴配對湊數；配對成功即與夥伴圍成一個圈圈坐下，直到全場所有人都完成配對坐下即達成目標。大聲呼喊自己手上的數字能讓全場資訊快速流通；鬼牌應留到最後救援落單夥伴。</p>
+        <h4>融入意涵</h4>
+        <p>打破小組界線、全公司一起完成同一個目標——「團結不是只在自己這一組裡團結，而是整個公司一起」。數字與運算符號跨語言辨識度高，翻譯負荷低，適合作為打破語言隔閡的全場收尾活動。</p>
+        <h4>分組分享題目</h4>
+        <ul>
+          <li>這一關你是跟原本認識的隊友配對，還是跟不認識的同事？感覺有什麼不同？</li>
+          <li>有沒有被鬼牌救援、或用鬼牌救過別人的經驗？</li>
+          <li>最後還沒湊到數字時，有沒有人主動拆夥讓牌給你？</li>
+          <li>一整天活動下來，這一關的「跨組合作」跟前面「組內合作」比起來，帶給你什麼不同的感受？</li>
+        </ul>
+      </div>
+    </details>
+  </section>
+
+  <section class="slide tall" id="s4">
+    <div class="sec-num">04</div>
+    <h2>備用活動十四項</h2>
+    <p class="lead">視現場節奏彈性替換主要活動，或作為加碼使用。標示 ⚠️／🚫 者涉及較多肢體接觸考量，已於玩法中改為無接觸或口頭引導版本。</p>
+    <div class="table-wrap"><table>
+      <tr><th>活動</th><th>道具</th><th>玩法摘要</th></tr>
+      <tr><td>1. 同理心障礙關卡（融合版）</td><td>眼罩/口罩、耳塞、三角巾、衣物、厚紙板、積木</td><td>全組抽籤決定角色（矇眼/耳塞/綁手/綁腿各 2 人），留在座位區，用口頭指令引導疊積木成金字塔</td></tr>
+      <tr><td>2. 100 秒不 NG 接力</td><td>積木、骰子、撲克牌、羽球拍與球</td><td>分棒依序完成疊積木、骰牌配對、羽球顛球等關卡，任一出錯回該棒重來，限時內全數完成</td></tr>
+      <tr><td>3. 捕夢網撈球</td><td>繩製捕夢網（或毛線自製）、各種球類</td><td>每組 8 人各持繩子一端，合力用捕夢網撐住球不落地，一起數到 30 過關</td></tr>
+      <tr><td>4. 支援前線（改良版）</td><td>辦公室現有物品、指定籃子或桌面</td><td>主持人出題，成員就地取材依序傳遞物品放入指定籃子，比賽哪組最快最完整</td></tr>
+      <tr><td>5. 命運撲克牌</td><td>撲克牌（建議大張版本）</td><td>兩人同時出牌喊相乘數字，較大方從桌面收走對方牌，統計最後持牌最多者</td></tr>
+      <tr><td>6. 消失的金字塔</td><td>紙杯 10 個、小球 1 顆、手機碼錶</td><td>塔頂放球，8 秒內把杯子依序收成一疊，球須全程維持最上方不落地</td></tr>
+      <tr><td>7. 疊杯金字塔</td><td>紙杯、氣球（每人 1 顆）、籃子</td><td>用嘴叼住吹好的氣球帶紙杯移動疊成金字塔，過程不能用手碰觸</td></tr>
+      <tr><td>8. 默契排隊挑戰</td><td>不需道具</td><td>依生日月份、鞋子大小等條件，全程不說話、不寫字，靠手勢眼神排成一列</td></tr>
+      <tr><td>9. 撲克臉猜牌配對</td><td>撲克牌、膠帶或頭帶</td><td>每人額頭貼牌看不到自己的，靠別人表情反應猜出牌的大小，找到數字相近的人排成一列</td></tr>
+      <tr><td>10. 指令大逆轉</td><td>不需道具</td><td>熟悉基本口令後宣布口令意思互換，全組立刻按新規則反應</td></tr>
+      <tr><td>11. 道氣網｜捕夢網（完整版）</td><td>毛線球、球</td><td>全組圍圈傳接球並說祝福語，書本置於毛線網中央測試團隊同步跳躍</td></tr>
+      <tr><td>12. 團隊擺拍過關</td><td>投影設備或動作小卡</td><td>依序出示無接觸動作示範圖卡（蹲下、舉手、圍圈等），全組同時擺出一致動作</td></tr>
+      <tr><td>13. 默契 60 秒</td><td>場地起訖線、手機碼錶</td><td>全程不講話，靠心中默數同步在第 60 秒剛好踩過對面線</td></tr>
+      <tr><td>14. 謙恭引路者</td><td>眼罩（個人專屬）、障礙物、手機碼錶</td><td>矇眼挑戰者只依引導者語音指示繞過障礙，全程不直接觸碰，往返接力</td></tr>
+    </table></div>
+  </section>
+
+  <section class="slide tall" id="s5">
+    <div class="sec-num">05</div>
+    <h2>道具檢核清單</h2>
+    <p class="lead">匯整全部 20 個活動所需道具（主要活動 6 項＋備用活動 14 項，其中默契排隊挑戰與指令大逆轉不需道具）。</p>
+    <h3>主要活動｜跨活動採購清單彙整（3 組同時各自一套為基準）</h3>
+    <div class="table-wrap"><table>
+      <tr><th>道具</th><th>用於</th><th>建議採購總量</th><th>備註</th></tr>
+      <tr><td>大氣球／沙灘球</td><td>活動一</td><td>3–5 顆</td><td>氣球易破，多帶備用</td></tr>
+      <tr><td>打氣筒</td><td>活動一</td><td>1–2 個</td><td>共用巡迴打氣</td></tr>
+      <tr><td>眼罩（可用口罩替代）</td><td>活動一、三</td><td>每人 1 個，約 24–36 個</td><td>不同人之間不共用，建議標記姓名或分組顏色</td></tr>
+      <tr><td>紙杯</td><td>活動二、三</td><td>30 個</td><td>活動三可沿用活動二的紙杯</td></tr>
+      <tr><td>橡皮筋</td><td>活動二</td><td>4 條</td><td>多備 1 條避免中途拉斷</td></tr>
+      <tr><td>細繩（約 60 公分）</td><td>活動二</td><td>15 條</td><td></td></tr>
+      <tr><td>繩子（粗，供綁腳踝）</td><td>活動四</td><td>12 條</td><td>可 3 組重複使用同樣 4 色</td></tr>
+      <tr><td>大型格板（16 宮格）</td><td>活動五</td><td>3 只</td><td></td></tr>
+      <tr><td>撲克牌（含鬼牌）</td><td>活動五、六</td><td>1 副＋1 副備用</td><td>依序進行可重複使用</td></tr>
+      <tr><td>題目對照板</td><td>活動五</td><td>1 張</td><td>場地正中央共用</td></tr>
+    </table></div>
+    <h3>備用活動道具</h3>
+    <div class="table-wrap"><table>
+      <tr><th>活動</th><th>所需道具</th></tr>
+      <tr><td>1. 同理心障礙關卡</td><td>眼罩或口罩、耳塞、三角巾、一般衣物、厚紙板、積木</td></tr>
+      <tr><td>2. 100 秒不 NG 接力</td><td>積木、骰子、撲克牌、羽球拍與球</td></tr>
+      <tr><td>3. 捕夢網撈球</td><td>繩製捕夢網（或毛線自製）、各種尺寸球類</td></tr>
+      <tr><td>4. 支援前線（改良版）</td><td>就地取材（辦公室現有物品）、指定籃子或桌面</td></tr>
+      <tr><td>5. 命運撲克牌</td><td>撲克牌（建議大張版本）</td></tr>
+      <tr><td>6. 消失的金字塔</td><td>紙杯 10 個（乘 N 組）、小球 1 顆、手機碼錶</td></tr>
+      <tr><td>7. 疊杯金字塔</td><td>紙杯（每組數個）、氣球（每人 1 顆）、籃子</td></tr>
+      <tr><td>8. 默契排隊挑戰</td><td>不需道具</td></tr>
+      <tr><td>9. 撲克臉猜牌配對</td><td>撲克牌（每人 1 張）、膠帶或頭帶</td></tr>
+      <tr><td>10. 指令大逆轉</td><td>不需道具</td></tr>
+      <tr><td>11. 道氣網｜捕夢網（完整版）</td><td>毛線球、球</td></tr>
+      <tr><td>12. 團隊擺拍過關</td><td>投影設備（筆電/手機無線投影）或印製動作小卡、生成的團體圖片題目</td></tr>
+      <tr><td>13. 默契 60 秒</td><td>場地起訖線、手機碼錶</td></tr>
+      <tr><td>14. 謙恭引路者</td><td>眼罩（每人 1 個不共用）、障礙物（椅子、紙箱，可用紙杯替代）、手機碼錶</td></tr>
+    </table></div>
+  </section>
+
+  <section class="slide" id="s6">
+    <div class="sec-num">06</div>
+    <h2>配樂清單</h2>
+    <p class="lead">時間點為當時推算排程，與正式定案的 09:00 起算時間表略有出入，現場執行時請以流程時間表的實際進度為準。</p>
+    <div class="table-wrap"><table>
+      <tr><th>時間點</th><th>用途</th><th>連結</th></tr>
+      <tr><td class="time">8:30</td><td>進場音樂</td><td><a href="https://www.youtube.com/watch?v=wsQvKTBg4uU&list=PLiIcTs6ztcFL0X8M4BlmypGnNnViWvXGU" target="_blank" rel="noopener">YouTube</a></td></tr>
+      <tr><td class="time">—</td><td>倒數 1 分鐘音樂</td><td><a href="https://youtu.be/dNHDxKhV0AQ" target="_blank" rel="noopener">YouTube</a></td></tr>
+      <tr><td class="time">10:10</td><td>中場休息音樂</td><td><a href="https://youtu.be/KVYPczYYaUM" target="_blank" rel="noopener">YouTube</a></td></tr>
+      <tr><td class="time">11:15</td><td>配數蹲下動畫</td><td><a href="https://youtu.be/3qus_nGn0F4" target="_blank" rel="noopener">YouTube</a></td></tr>
+      <tr><td class="time">11:40</td><td>手牽手圍圈音樂</td><td><a href="https://youtu.be/PRJHVthHCkA" target="_blank" rel="noopener">YouTube</a></td></tr>
+      <tr><td class="time">11:45</td><td>結束大合唱音樂</td><td><a href="https://youtu.be/DLFzAVO9zY8" target="_blank" rel="noopener">YouTube</a></td></tr>
+      <tr><td class="time">11:50</td><td>頒獎音樂</td><td><a href="https://youtube.com/playlist?list=PLPS1U27fHsknIyRqKJ50faUYO1FVjAdYT" target="_blank" rel="noopener">播放清單</a></td></tr>
+    </table></div>
+  </section>
+
+  <section class="slide" id="s7">
+    <div class="sec-num">07</div>
+    <h2>其他備註與待確認事項</h2>
+    <ul>
+      <li><b>串場逐字稿：</b>每個主要活動之間都有完整的主持人串場逐字稿，引用中外名言佳句銜接上一關與下一關主題，已附於各活動詳情內。</li>
+      <li><b>影片素材：</b>頁面附有「YST 團建」直式短版示範影片，以及活動三、四、五各自的影片 Demo。</li>
+      <li><b>文件附件：</b>中文版「楊姐公司團結力量教育訓練_活動企劃案.docx」、泰文版「Jane_Company_Unity_Activity_Plan_TH.docx」。</li>
+      <li><b>籌備背景：</b>此行應楊姐邀請前往泰國曼谷公司，團隊自我定位為台灣一貫道佛堂交流；楊姐有意栽培公司內三位員工未來協助翻譯與帶活動，未來活動盤算逐漸交棒給楊姐培養的當地幹部執行。</li>
+    </ul>
+    <div class="note">
+      <b>待確認事項</b>
+      <ul>
+        <li>道具清單最終確認（區分「請楊姐現場準備」vs「自行攜帶／當地採購」）</li>
+        <li>即時翻譯工具可行性測試（Google 翻譯雙向對話模式、GPT 語音翻譯、磁吸式 AI 翻譯耳機等皆在考慮中）</li>
+        <li>6 個主要活動的泰文分組分享題目為 AI 初譯，仍需當地溝通日請楊姐或小組長協助校對</li>
+        <li>開場／結尾致詞角色分工（擬改為「開場楊姐＋魏點傳師各 5 分、結尾魏點傳師＋楊姐各 5 分」）仍待與楊姐確認</li>
+        <li>現場投影設備規格、辦公室既有可用道具／文具、下午消防課程講師是否上午在場，均待與楊姐確認</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>團結力量・凝聚同行 · 聖凡兼修團｜楊姐公司團建活動企劃</footer>
+
+<div class="present-bar" role="toolbar" aria-label="簡報控制">
+  <button class="icon-btn" id="prevBtn" type="button" aria-label="上一頁"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+  <span class="counter" id="counter">1 / 8</span>
+  <button class="icon-btn" id="nextBtn" type="button" aria-label="下一頁"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+</div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var body = document.body;
+
+  function isDark() {
+    var t = root.getAttribute('data-theme');
+    if (t) return t === 'dark';
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function syncIcon() { body.classList.toggle('is-dark', isDark()); }
+  document.getElementById('themeBtn').addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    syncIcon();
+  });
+  if (window.matchMedia) {
+    var mq = window.matchMedia('(prefers-color-scheme: dark)');
+    if (mq.addEventListener) mq.addEventListener('change', syncIcon);
+  }
+  syncIcon();
+
+  var slides = [document.getElementById('cover')].concat(Array.prototype.slice.call(document.querySelectorAll('section.slide')));
+  var idx = 0;
+  var counter = document.getElementById('counter');
+  var progress = document.getElementById('progress');
+  var iconPlay = document.getElementById('iconPlay');
+  var iconExit = document.getElementById('iconExit');
+  var presentBtn = document.getElementById('presentBtn');
+
+  function show(i) {
+    idx = Math.max(0, Math.min(slides.length - 1, i));
+    slides.forEach(function (s, n) { s.classList.toggle('active', n === idx); });
+    slides[idx].scrollTop = 0;
+    counter.textContent = (idx + 1) + ' / ' + slides.length;
+    progress.style.width = ((idx + 1) / slides.length * 100) + '%';
+  }
+  function currentFromScroll() {
+    var best = 0;
+    slides.forEach(function (s, n) { if (s.getBoundingClientRect().top < window.innerHeight * 0.4) best = n; });
+    return best;
+  }
+  function enter() {
+    var start = currentFromScroll();
+    body.classList.add('present');
+    iconPlay.style.display = 'none'; iconExit.style.display = 'block';
+    presentBtn.setAttribute('aria-label', '離開簡報模式');
+    show(start);
+    if (root.requestFullscreen) { root.requestFullscreen().catch(function () {}); }
+  }
+  function exit() {
+    body.classList.remove('present');
+    slides.forEach(function (s) { s.classList.remove('active'); });
+    iconPlay.style.display = 'block'; iconExit.style.display = 'none';
+    presentBtn.setAttribute('aria-label', '簡報模式');
+    if (document.fullscreenElement && document.exitFullscreen) { document.exitFullscreen().catch(function () {}); }
+    slides[idx].scrollIntoView({ block: 'start' });
+  }
+  presentBtn.addEventListener('click', function () { body.classList.contains('present') ? exit() : enter(); });
+  document.getElementById('prevBtn').addEventListener('click', function () { show(idx - 1); });
+  document.getElementById('nextBtn').addEventListener('click', function () { show(idx + 1); });
+
+  document.addEventListener('keydown', function (e) {
+    if (!body.classList.contains('present')) return;
+    if (['ArrowRight', 'PageDown', ' '].indexOf(e.key) > -1) { e.preventDefault(); show(idx + 1); }
+    else if (['ArrowLeft', 'PageUp'].indexOf(e.key) > -1) { e.preventDefault(); show(idx - 1); }
+    else if (e.key === 'Home') { show(0); }
+    else if (e.key === 'End') { show(slides.length - 1); }
+    else if (e.key === 'Escape') { exit(); }
+  });
+  document.addEventListener('fullscreenchange', function () {
+    if (!document.fullscreenElement && body.classList.contains('present')) exit();
+  });
+
+  var x0 = null, y0 = null;
+  document.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+  document.addEventListener('touchend', function (e) {
+    if (!body.classList.contains('present') || x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) show(idx + (dx < 0 ? 1 : -1));
+    x0 = null;
+  }, { passive: true });
+})();
+</script>
+</body>
+</html>
