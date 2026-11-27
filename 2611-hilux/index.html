@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>泰國 Hilux 雙排購車分析儀表</title>
+<style>
+:root{
+  color-scheme:light;
+  --page:#f9f9f9; --surface:#ffffff; --ink:#191919; --ink2:#666666;
+  --grid:#e7e7e7; --axis:#c2c2c2; --border:rgba(11,11,11,.10); --good:#006c10;
+  --s1:#257de0; --s2:#f47230; --s3:#00b894;
+}
+@media (prefers-color-scheme:dark){
+  :root:where(:not([data-theme="light"])){
+    color-scheme:dark;
+    --page:#0b0b0b; --surface:#191919; --ink:#efefef; --ink2:#9c9c9c;
+    --grid:#303030; --axis:#474747; --border:rgba(255,255,255,.10); --good:#53c556;
+    --s1:#338ced; --s2:#e76624; --s3:#00a888;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --page:#0b0b0b; --surface:#191919; --ink:#efefef; --ink2:#9c9c9c;
+  --grid:#303030; --axis:#474747; --border:rgba(255,255,255,.10); --good:#53c556;
+  --s1:#338ced; --s2:#e76624; --s3:#00a888;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--ink);
+  font:15px/1.55 system-ui,-apple-system,"Segoe UI","Noto Sans TC","Microsoft JhengHei",sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:20px 16px 48px}
+header{display:flex;gap:12px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
+h1{font-size:22px;margin:0 0 4px}
+.sub{color:var(--ink2);font-size:13px;margin:0}
+button,select,input{font:inherit;color:var(--ink)}
+.btn{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:6px 12px;cursor:pointer}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;margin-top:16px}
+.card h2{font-size:16px;margin:0 0 2px}
+.card .hint{color:var(--ink2);font-size:12.5px;margin:0 0 12px}
+.filters{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+.fg{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.fg>label.t{color:var(--ink2);font-size:12.5px;margin-right:2px}
+.chip{border:1px solid var(--border);background:var(--surface);border-radius:999px;padding:4px 12px;cursor:pointer;font-size:13px;display:inline-flex;gap:6px;align-items:center}
+.chip[aria-pressed="true"]{border-color:var(--ink);font-weight:600}
+.chip .sw{width:10px;height:10px;border-radius:50%;display:inline-block}
+.chip:not([aria-pressed="true"]) .sw{opacity:.35}
+.fxbox input,.fg select{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:4px 8px}
+.fxbox input{width:72px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:16px}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px}
+.kpi .k{color:var(--ink2);font-size:12.5px}
+.kpi .v{font-size:24px;font-weight:650;margin-top:2px}
+.kpi .d{color:var(--ink2);font-size:12px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--ink2);margin-bottom:10px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.lg-dot{width:11px;height:11px;border-radius:50%;display:inline-block}
+.lg-ring{width:11px;height:11px;border-radius:50%;display:inline-block;border:2px solid var(--ink2);background:var(--surface)}
+.axis{display:grid;grid-template-columns:minmax(150px,38%) 1fr;font-size:11.5px;color:var(--ink2)}
+.axis .ticks{position:relative;height:18px}
+.axis .ticks b{position:absolute;transform:translateX(-50%);font-weight:400;white-space:nowrap}
+.axis .ticks b:first-child{transform:none}
+.axis .ticks b:last-child{transform:translateX(-100%)}
+.row{display:grid;grid-template-columns:minmax(150px,38%) 1fr;align-items:center;min-height:30px;border-top:1px solid transparent}
+.row:hover{background:color-mix(in srgb,var(--ink) 4%,transparent)}
+.lbl{padding:2px 8px 2px 0;line-height:1.25;min-width:0}
+.lbl b{font-weight:600;font-size:13px;display:block}
+.lbl span{color:var(--ink2);font-size:11.5px}
+.track{position:relative;height:30px;
+  background:
+   linear-gradient(var(--grid),var(--grid)) 25%/1px 100% no-repeat,
+   linear-gradient(var(--grid),var(--grid)) 50%/1px 100% no-repeat,
+   linear-gradient(var(--grid),var(--grid)) 75%/1px 100% no-repeat}
+.rail{position:absolute;top:13px;height:4px;border-radius:2px;opacity:.45}
+.dot{position:absolute;top:8px;width:14px;height:14px;margin-left:-7px;border-radius:50%}
+.dot.e{box-shadow:0 0 0 2px var(--surface)}
+.dot.m{background:var(--surface);border:2px solid var(--ink2)}
+.bar{position:absolute;left:0;top:9px;height:12px;border-radius:0 4px 4px 0}
+.bval{position:absolute;top:5px;font-size:12px;white-space:nowrap;padding-left:6px}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:760px}
+th,td{padding:7px 8px;border-bottom:1px solid var(--grid);text-align:right;white-space:nowrap}
+th{color:var(--ink2);font-weight:500;cursor:pointer;user-select:none;position:sticky;top:0;background:var(--surface)}
+th:nth-child(-n+4),td:nth-child(-n+4){text-align:left}
+td.pos{color:var(--good);font-weight:600}
+.badge{display:inline-flex;align-items:center;gap:6px}
+.badge i{width:9px;height:9px;border-radius:50%;display:inline-block}
+.insights{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.ins{border:1px solid var(--border);border-radius:10px;padding:12px 14px;font-size:13.5px}
+.ins h3{margin:0 0 4px;font-size:14px}
+.ins p{margin:0;color:var(--ink2)}
+.note{font-size:12.5px;color:var(--ink2)}
+.note li{margin:3px 0}
+#tip{position:fixed;z-index:10;pointer-events:none;background:var(--ink);color:var(--surface);
+  padding:8px 10px;border-radius:8px;font-size:12.5px;line-height:1.5;display:none;max-width:260px}
+#tip b{display:block;margin-bottom:2px}
+.empty{padding:24px;text-align:center;color:var(--ink2)}
+@media (max-width:640px){
+  .axis,.row{grid-template-columns:1fr}
+  .axis>div:first-child{display:none}
+  .lbl{padding-bottom:0}
+  .row{padding:4px 0}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>泰國 Hilux 雙排購車分析儀表</h1>
+      <p class="sub">Revo（舊臉）與 Travo（新臉 2025）員工價 vs 市場價｜單位推測為泰銖（THB）</p>
+    </div>
+    <button class="btn" id="theme" type="button">切換深色／淺色</button>
+  </header>
+
+  <section class="card">
+    <div class="filters">
+      <div class="fg" id="fSeries"><label class="t">系列</label></div>
+      <div class="fg" id="fTrans"><label class="t">排檔</label></div>
+      <div class="fg" id="fColor"><label class="t">顏色</label></div>
+      <div class="fg"><label class="t" for="sortSel">排序</label>
+        <select id="sortSel">
+          <option value="idx|1">原始順序</option>
+          <option value="e|1">員工價 低→高</option>
+          <option value="e|-1">員工價 高→低</option>
+          <option value="pct|-1">折讓率 高→低</option>
+          <option value="diff|-1">折讓金額 高→低</option>
+        </select>
+      </div>
+      <div class="fg fxbox"><label class="t" for="fx">匯率 1 THB ≈</label><input id="fx" type="number" step="0.01" min="0.5" max="1.5" value="0.97"><span class="note">TWD</span></div>
+    </div>
+  </section>
+
+  <div class="kpis" id="kpis"></div>
+
+  <section class="card">
+    <h2>員工價 → 市場價 價差圖</h2>
+    <p class="hint">實心點＝員工價，空心點＝市場價，連線長度即折讓金額。滑過或點選可看明細。</p>
+    <div class="legend" id="legend1"></div>
+    <div class="axis"><div></div><div class="ticks" id="ticks"></div></div>
+    <div id="dumbbell"></div>
+  </section>
+
+  <section class="card">
+    <h2>折讓率排行</h2>
+    <p class="hint">折讓率＝（市價 − 員工價）÷ 市價。數字後方為折讓金額（THB）。</p>
+    <div id="discount"></div>
+  </section>
+
+  <section class="card">
+    <h2>明細表</h2>
+    <p class="hint">點欄位標題可排序；「員工價約合」依上方匯率試算，單位為萬元台幣。</p>
+    <div class="tablewrap"><table id="tbl"></table></div>
+  </section>
+
+  <section class="card">
+    <h2>分析重點</h2>
+    <div class="insights">
+      <div class="ins"><h3>折讓幅度</h3><p>員工價比市價低約 10.4%–15.6%（約 10.9–14.4 萬泰銖）。舊款 Revo 比例最高，新款越高階比例越低，但折讓金額反而最大。</p></div>
+      <div class="ins"><h3>顏色加價</h3><p>員工價中，金屬漆比素色貴 6,527；珍珠白（或特殊色）再比金屬漆貴約 9,100–9,300。市價多半不分顏色，只有 4TREX 珍珠白加 1 萬，因此選素色最划算。</p></div>
+      <div class="ins"><h3>新舊款價差</h3><p>入門款員工價約差 15 萬（Revo Entry MT 627,983；Travo Smart MT 777,462）。推測是 2.4 升級 2.8 引擎與配備差異，車身高度與配備請向業務確認。</p></div>
+      <div class="ins"><h3>Travo 階梯加價（員工價）</h3><p>Smart → Premium 約 +4.4 萬；Premium → Overland 約 +9.3 萬；Overland → Overland Plus 約 +6.6 萬；4TREX 比同級 Prerunner 約貴 13.8 萬（推測為四驅版，需確認）。</p></div>
+      <div class="ins"><h3>性價比候選</h3><p>Travo 中 Prerunner Premium AT 折讓率最高（13.1%），可優先比較配備；預算有限時 Revo Z Edition 折讓率達 14%–15.6%。</p></div>
+      <div class="ins"><h3>匯率參考</h3><p>台灣銀行 10 月底泰幣即期匯率約 0.95–0.99，本頁預設 0.97，僅供概算，請以實際成交匯率為準。</p></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>使用前提醒</h2>
+    <ul class="note">
+      <li>資料來源為使用者提供的價目表截圖，截圖上下緣有被切掉的列，車型清單可能不完整。</li>
+      <li>員工價通常僅限車廠員工或其親屬；若不具資格，請以市場價為準。</li>
+      <li>價格是否含稅、牌照、保險與手續費未標示，落地價需另行向經銷商確認。</li>
+      <li>泰國為右駕車，帶回台灣掛牌限制很多，不建議。</li>
+      <li>本頁為資訊整理，不構成財務或購車建議。</li>
+    </ul>
+  </section>
+</div>
+<div id="tip"></div>
+
+<script>
+const SERIES = {
+  REVO:  {name:'Revo 舊臉 (IMP’25)', cv:'--s1'},
+  PRE:   {name:'Travo Prerunner 2.8',     cv:'--s2'},
+  TREX:  {name:'Travo 4TREX 2.8',         cv:'--s3'}
+};
+// s=系列, n=車型, t=排檔, c=顏色, e=員工價, m=市場價
+const RAW = [
+ ['REVO','Z Edition 2.4 Entry','MT','金屬',634510,744000],
+ ['REVO','Z Edition 2.4 Entry','MT','素色',627983,744000],
+ ['REVO','Z Edition 2.4 Entry','AT','金屬',671746,784000],
+ ['REVO','Z Edition 2.4 Entry','AT','素色',665219,784000],
+ ['REVO','Z Edition 2.4 Mid','MT','金屬',707056,822000],
+ ['REVO','Z Edition 2.4 Mid','MT','素色',700529,822000],
+ ['REVO','Z Edition 2.4 Mid','AT','金屬',744292,862000],
+ ['REVO','Z Edition 2.4 Mid','AT','素色',737765,862000],
+ ['REVO','GR Sport 2.8 4x2','AT','珍珠/特殊色',819834,934000],
+ ['REVO','GR Sport 2.8 4x2','AT','金屬',810525,934000],
+ ['PRE','Prerunner Smart','MT','金屬',783989,895000],
+ ['PRE','Prerunner Smart','MT','素色',777462,895000],
+ ['PRE','Prerunner Smart','AT','金屬',830427,945000],
+ ['PRE','Prerunner Smart','AT','素色',823900,945000],
+ ['PRE','Prerunner Premium','MT','金屬',834386,949000],
+ ['PRE','Prerunner Premium','MT','素色',827859,949000],
+ ['PRE','Prerunner Premium','AT','金屬',874832,999000],
+ ['PRE','Prerunner Premium','AT','素色',868305,999000],
+ ['PRE','Prerunner Overland','AT','珍珠/特殊色',977338,1102000],
+ ['PRE','Prerunner Overland','AT','金屬',968029,1102000],
+ ['PRE','Prerunner Overland Plus','AT','珍珠/特殊色',1042715,1176000],
+ ['PRE','Prerunner Overland Plus','AT','金屬',1033620,1176000],
+ ['TREX','4TREX Premium','MT','金屬',972309,1090000],
+ ['TREX','4TREX Premium','MT','素色',965889,1090000],
+ ['TREX','4TREX Overland','AT','珍珠/特殊色',1165016,1302000],
+ ['TREX','4TREX Overland','AT','金屬',1155814,1292000],
+ ['TREX','4TREX Overland Plus','AT','珍珠/特殊色',1232212,1376000],
+ ['TREX','4TREX Overland Plus','AT','金屬',1223117,1366000]
+];
+const DATA = RAW.map((r,i)=>({idx:i,s:r[0],n:r[1],t:r[2],c:r[3],e:r[4],m:r[5],diff:r[5]-r[4],pct:(r[5]-r[4])/r[5]*100}));
+
+const st = {series:new Set(Object.keys(SERIES)), trans:'全部', color:'全部', key:'idx', dir:1};
+const $ = id => document.getElementById(id);
+const fmt = n => n.toLocaleString('en-US');
+const wan = (n,fx) => (n*fx/10000).toFixed(1)+' 萬';
+const fx = () => parseFloat($('fx').value) || 0.97;
+
+/* ---------- filters ---------- */
+function mkChips(host, items, isActive, onClick, swatch){
+  items.forEach(it=>{
+    const b=document.createElement('button');
+    b.type='button'; b.className='chip';
+    b.innerHTML=(swatch?`<span class="sw" style="background:var(${swatch(it)})"></span>`:'')+it.label;
+    b.addEventListener('click',()=>{onClick(it);sync();render();});
+    b._it=it; b._act=isActive; host.appendChild(b);
+  });
+}
+function sync(){
+  document.querySelectorAll('.chip').forEach(b=>b.setAttribute('aria-pressed',b._act(b._it)?'true':'false'));
+}
+mkChips($('fSeries'),Object.keys(SERIES).map(k=>({k,label:SERIES[k].name})),
+  it=>st.series.has(it.k),
+  it=>{st.series.has(it.k)?st.series.delete(it.k):st.series.add(it.k);},
+  it=>SERIES[it.k].cv);
+mkChips($('fTrans'),['全部','MT','AT'].map(v=>({v,label:v})),it=>st.trans===it.v,it=>{st.trans=it.v;});
+mkChips($('fColor'),['全部','素色','金屬','珍珠/特殊色'].map(v=>({v,label:v})),it=>st.color===it.v,it=>{st.color=it.v;});
+$('sortSel').addEventListener('change',e=>{const [k,d]=e.target.value.split('|');st.key=k;st.dir=+d;render();});
+$('fx').addEventListener('input',render);
+$('theme').addEventListener('click',()=>{
+  const r=document.documentElement;
+  const dark=(r.dataset.theme==='dark')||(!r.dataset.theme&&matchMedia('(prefers-color-scheme:dark)').matches);
+  r.dataset.theme=dark?'light':'dark';
+});
+
+function rows(){
+  const out=DATA.filter(d=>st.series.has(d.s)&&(st.trans==='全部'||d.t===st.trans)&&(st.color==='全部'||d.c===st.color));
+  out.sort((a,b)=>(a[st.key]-b[st.key])*st.dir||a.idx-b.idx);
+  return out;
+}
+
+/* ---------- tooltip ---------- */
+const tip=$('tip');
+function tipHtml(d){
+  const f=fx();
+  return `<b>${d.n} ${d.t}</b>${SERIES[d.s].name} · ${d.c}<br>員工價 ${fmt(d.e)}（≈${wan(d.e,f)}）<br>市價 ${fmt(d.m)}<br>差額 ${fmt(d.diff)}（${d.pct.toFixed(1)}%）`;
+}
+function bindTip(el,d){
+  const show=ev=>{tip.innerHTML=tipHtml(d);tip.style.display='block';move(ev);};
+  const move=ev=>{const x=Math.min(ev.clientX+14,innerWidth-270);tip.style.left=Math.max(8,x)+'px';tip.style.top=(ev.clientY+14)+'px';};
+  el.addEventListener('mouseenter',show);el.addEventListener('mousemove',move);
+  el.addEventListener('mouseleave',()=>tip.style.display='none');
+  el.addEventListener('click',ev=>{show(ev);setTimeout(()=>tip.style.display='none',2600);});
+}
+
+/* ---------- render ---------- */
+function render(){
+  const R=rows(), f=fx();
+  // KPI
+  if(!R.length){
+    $('kpis').innerHTML='';
+    ['dumbbell','discount'].forEach(i=>$(i).innerHTML='<div class="empty">沒有符合條件的車款，請調整篩選。</div>');
+    $('tbl').innerHTML='';$('ticks').innerHTML='';$('legend1').innerHTML='';return;
+  }
+  const minE=R.reduce((a,b)=>b.e<a.e?b:a), maxD=R.reduce((a,b)=>b.diff>a.diff?b:a), maxP=R.reduce((a,b)=>b.pct>a.pct?b:a);
+  const avgP=R.reduce((s,d)=>s+d.pct,0)/R.length, avgD=R.reduce((s,d)=>s+d.diff,0)/R.length;
+  $('kpis').innerHTML=[
+    ['符合車款',R.length+' 款',`共 ${DATA.length} 款`],
+    ['最低員工價',fmt(minE.e),`${minE.n} ${minE.t} · ≈${wan(minE.e,f)}`],
+    ['平均折讓率',avgP.toFixed(1)+'%',`平均省 ${fmt(Math.round(avgD))}`],
+    ['最大折讓金額',fmt(maxD.diff),`${maxD.n} ${maxD.t} ${maxD.c}`],
+    ['最高折讓率',maxP.pct.toFixed(1)+'%',`${maxP.n} ${maxP.t} ${maxP.c}`]
+  ].map(k=>`<div class="kpi"><div class="k">${k[0]}</div><div class="v">${k[1]}</div><div class="d">${k[2]}</div></div>`).join('');
+
+  // legend
+  $('legend1').innerHTML=Object.keys(SERIES).map(k=>`<span><i class="lg-dot" style="background:var(${SERIES[k].cv})"></i>${SERIES[k].name}</span>`).join('')
+    +'<span><i class="lg-dot" style="background:var(--ink2)"></i>實心＝員工價</span><span><i class="lg-ring"></i>空心＝市價</span>';
+
+  // dumbbell
+  const lo=600000,hi=1400000,pos=v=>((v-lo)/(hi-lo)*100);
+  $('ticks').innerHTML=[600000,800000,1000000,1200000,1400000].map(v=>`<b style="left:${pos(v)}%">${v/10000}萬</b>`).join('');
+  const dh=$('dumbbell'); dh.innerHTML='';
+  R.forEach(d=>{
+    const row=document.createElement('div');row.className='row';
+    const col=`var(${SERIES[d.s].cv})`;
+    row.innerHTML=`<div class="lbl"><b>${d.n} ${d.t}</b><span>${d.c} · ${fmt(d.e)} → ${fmt(d.m)}</span></div>
+      <div class="track"><i class="rail" style="left:${pos(d.e)}%;width:${pos(d.m)-pos(d.e)}%;background:${col}"></i>
+      <i class="dot e" style="left:${pos(d.e)}%;background:${col}"></i><i class="dot m" style="left:${pos(d.m)}%"></i></div>`;
+    bindTip(row,d);dh.appendChild(row);
+  });
+
+  // discount bars
+  const dd=$('discount'); dd.innerHTML='';
+  
+  [...R].sort((a,b)=>b.pct-a.pct).forEach(d=>{
+    const row=document.createElement('div');row.className='row';
+    const w=d.pct/16*68;
+    row.innerHTML=`<div class="lbl"><b>${d.n} ${d.t}</b><span>${SERIES[d.s].name} · ${d.c}</span></div>
+      <div class="track"><i class="bar" style="width:${w}%;background:var(${SERIES[d.s].cv})"></i>
+      <span class="bval" style="left:${w}%">${d.pct.toFixed(1)}% · −${fmt(d.diff)}</span></div>`;
+    bindTip(row,d);dd.appendChild(row);
+  });
+
+  // table
+  const cols=[['s','系列'],['n','車型'],['t','排檔'],['c','顏色'],['e','員工價'],['m','市價'],['diff','差額'],['pct','折讓率'],['ntd','員工價約合']];
+  const arrow=k=>st.key===k?(st.dir>0?' ▲':' ▼'):'';
+  $('tbl').innerHTML='<thead><tr>'+cols.map(c=>`<th data-k="${c[0]}">${c[1]}${arrow(c[0]==='ntd'?'e':c[0])}</th>`).join('')+'</tr></thead><tbody>'
+   +R.map(d=>`<tr><td><span class="badge"><i style="background:var(${SERIES[d.s].cv})"></i>${SERIES[d.s].name}</span></td>
+     <td>${d.n}</td><td>${d.t}</td><td>${d.c}</td><td>${fmt(d.e)}</td><td>${fmt(d.m)}</td>
+     <td class="pos">${fmt(d.diff)}</td><td class="pos">${d.pct.toFixed(1)}%</td><td>${wan(d.e,f)}</td></tr>`).join('')+'</tbody>';
+  $('tbl').querySelectorAll('th').forEach(th=>th.addEventListener('click',()=>{
+    let k=th.dataset.k; if(k==='ntd')k='e';
+    if(k==='s'||k==='n'||k==='t'||k==='c'){return;}
+    if(st.key===k)st.dir*=-1;else{st.key=k;st.dir=1;}
+    $('sortSel').value=['idx|1','e|1','e|-1','pct|-1','diff|-1'].includes(st.key+'|'+st.dir)?st.key+'|'+st.dir:$('sortSel').value;
+    render();
+  }));
+}
+sync();render();
+</script>
+</body>
+</html>
