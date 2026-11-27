@@ -180,7 +180,7 @@ td.pos{color:var(--good);font-weight:600}
         <option value="diff|-1">折讓金額 高→低</option>
         <option value="nfeat|-1">已查證配備數 多→少</option>
       </select>
-      <label for="fx">匯率 1 THB ≈</label><input id="fx" type="number" step="0.01" min="0.5" max="1.5" value="0.97"><span class="note">TWD</span>
+      <label for="fx">匯率 1 THB ≈</label><input id="fx" type="number" step="0.001" min="0.5" max="1.5" value="0.97"><span class="note">TWD</span><span class="note" id="fxStatus"></span><button class="btn" id="fxLive" type="button">更新即時匯率</button>
       <button class="btn" id="reset" type="button">重設為預設（AT）</button><span class="note">已自動記住您的選擇（僅存在這個瀏覽器）</span>
     </div>
   </section>
@@ -232,6 +232,7 @@ td.pos{color:var(--good);font-weight:600}
       <li>配備只列有查到來源的項目：TSS 3.0／電動方向盤（Overland Plus）、360° 環景、18 吋鋁圈、12.3 吋數位儀表（Overland 系列）。其他等級的配備請向經銷商索取規格表。</li>
       <li>GR Sport 的底盤高度未能查證，篩選「底盤」時不會被歸入低或高。Travo 離地間隙約 219–225 mm，車長×寬×高約 5,320×1,885×1,815 mm，軸距 3,085 mm。</li>
       <li>「外觀風格」為本頁自訂分類：實用（Entry／Smart）、都會（Mid／Premium）、探險（Overland 系列）、運動（GR Sport）。</li>
+      <li>匯率預設為載入時抓取的 THB→TWD 市場中間價（來源 open.er-api.com，備援 currency-api），實際換匯請以銀行牌價為準；也可在欄位內手動輸入。</li>
       <li>價格是否含稅、牌照、保險與手續費未標示；泰國為右駕車，帶回台灣掛牌限制很多，不建議。本頁為資訊整理，不構成財務或購車建議。</li>
       <li>來源：
         <a href="https://news.tvbs.com.tw/cars/3041559" target="_blank" rel="noopener">TVBS（Travo 車型編成）</a>、
@@ -317,6 +318,7 @@ const basisName = () => st.basis==='e'?'員工價':'市價';
 
 /* ---------- remember settings (localStorage) ---------- */
 const KEY='hilux2611_v1';
+let fxMode='live', fxMeta=null;
 const SAVED=(()=>{try{return JSON.parse(localStorage.getItem(KEY)||'null');}catch(e){return null;}})();
 if(SAVED){
   ['drive','floor','eng','trans','color','style','basis','key','dir','preset'].forEach(k=>{if(SAVED[k]!==undefined)st[k]=SAVED[k];});
@@ -324,10 +326,12 @@ if(SAVED){
   if(Array.isArray(SAVED.series)){const a=SAVED.series.filter(k=>SERIES[k]);if(a.length)st.series=new Set(a);}
   if(Array.isArray(SAVED.feats))st.feats=new Set(SAVED.feats.filter(k=>FEATS[k]));
   if(SAVED.fx)$('fx').value=SAVED.fx;
+  if(SAVED.fxMode)fxMode=SAVED.fxMode;
+  if(SAVED.fxMeta)fxMeta=SAVED.fxMeta;
   if(SAVED.theme)document.documentElement.dataset.theme=SAVED.theme;
 }
 function save(){
-  try{localStorage.setItem(KEY,JSON.stringify({...st,series:[...st.series],feats:[...st.feats],fx:fx(),theme:document.documentElement.dataset.theme||''}));}catch(e){}
+  try{localStorage.setItem(KEY,JSON.stringify({...st,series:[...st.series],feats:[...st.feats],fx:fx(),fxMode,fxMeta,theme:document.documentElement.dataset.theme||''}));}catch(e){}
 }
 
 /* ---------- build controls ---------- */
@@ -371,7 +375,32 @@ PRESETS.forEach(p=>{
 });
 $('budget').addEventListener('input',e=>{st.budget=+e.target.value;st.preset='';syncAll();});
 $('sortSel').addEventListener('change',e=>{const [k,d]=e.target.value.split('|');st.key=k;st.dir=+d;render();});
-$('fx').addEventListener('input',render);
+$('fx').addEventListener('input',()=>{fxMode='manual';setFxStatus();syncAll();});
+$('fxLive').addEventListener('click',loadLive);
+const tpe=t=>new Date(t).toLocaleString('zh-TW',{timeZone:'Asia/Taipei',hour12:false,month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'});
+function setFxStatus(msg){
+  const el=$('fxStatus');
+  if(msg){el.textContent=msg;return;}
+  el.textContent=fxMode==='manual'?'（手動設定）':(fxMeta?`（即時匯率・${fxMeta.src}・${tpe(fxMeta.time)}）`:'（預設值）');
+}
+const FX_SRC=[
+  async sig=>{const r=await fetch('https://open.er-api.com/v6/latest/THB',{signal:sig});const j=await r.json();
+    if(!j.rates||!j.rates.TWD)throw new Error('no rate');return {rate:j.rates.TWD,src:'open.er-api.com',time:new Date(j.time_last_update_utc).toISOString()};},
+  async sig=>{const r=await fetch('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/thb.json',{signal:sig});const j=await r.json();
+    if(!j.thb||!j.thb.twd)throw new Error('no rate');return {rate:j.thb.twd,src:'currency-api',time:new Date(j.date).toISOString()};}
+];
+async function loadLive(){
+  setFxStatus('（更新匯率中…）');
+  for(const f of FX_SRC){
+    try{
+      const sig=(typeof AbortSignal!=='undefined'&&AbortSignal.timeout)?AbortSignal.timeout(6000):undefined;
+      const x=await f(sig);
+      $('fx').value=x.rate.toFixed(3); fxMode='live'; fxMeta={src:x.src,time:x.time};
+      setFxStatus(); syncAll(); return true;
+    }catch(e){}
+  }
+  setFxStatus('（即時匯率取得失敗，沿用 '+fx().toFixed(3)+'）'); return false;
+}
 $('reset').addEventListener('click',()=>{const f=fx();st=fresh();st.preset='all';$('fx').value=f;syncAll();});
 $('theme').addEventListener('click',()=>{
   const r=document.documentElement;
@@ -496,7 +525,9 @@ function render(){
   }));
 }
 if(!SAVED)st.preset='all';
+setFxStatus();
 syncAll();
+if(fxMode==='live')loadLive();
 </script>
 </body>
 </html>
