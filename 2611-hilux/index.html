@@ -181,7 +181,7 @@ td.pos{color:var(--good);font-weight:600}
         <option value="nfeat|-1">已查證配備數 多→少</option>
       </select>
       <label for="fx">匯率 1 THB ≈</label><input id="fx" type="number" step="0.01" min="0.5" max="1.5" value="0.97"><span class="note">TWD</span>
-      <button class="btn" id="reset" type="button">重設全部條件</button>
+      <button class="btn" id="reset" type="button">重設為預設（AT）</button><span class="note">已自動記住您的選擇（僅存在這個瀏覽器）</span>
     </div>
   </section>
 
@@ -305,7 +305,7 @@ function derive(r,i){
 }
 const DATA = RAW.map(derive);
 
-const fresh = () => ({series:new Set(Object.keys(SERIES)),drive:'全部',floor:'全部',eng:'全部',trans:'全部',
+const fresh = () => ({series:new Set(Object.keys(SERIES)),drive:'全部',floor:'全部',eng:'全部',trans:'AT',
   color:'全部',style:'全部',feats:new Set(),budget:140,basis:'e',key:'idx',dir:1,preset:''});
 let st = fresh();
 const $ = id => document.getElementById(id);
@@ -314,6 +314,21 @@ const wan = (n,f) => (n*f/10000).toFixed(1)+' 萬';
 const fx = () => parseFloat($('fx').value) || 0.97;
 const priceOf = d => d[st.basis];
 const basisName = () => st.basis==='e'?'員工價':'市價';
+
+/* ---------- remember settings (localStorage) ---------- */
+const KEY='hilux2611_v1';
+const SAVED=(()=>{try{return JSON.parse(localStorage.getItem(KEY)||'null');}catch(e){return null;}})();
+if(SAVED){
+  ['drive','floor','eng','trans','color','style','basis','key','dir','preset'].forEach(k=>{if(SAVED[k]!==undefined)st[k]=SAVED[k];});
+  if(typeof SAVED.budget==='number'&&SAVED.budget>=60&&SAVED.budget<=140)st.budget=SAVED.budget;
+  if(Array.isArray(SAVED.series)){const a=SAVED.series.filter(k=>SERIES[k]);if(a.length)st.series=new Set(a);}
+  if(Array.isArray(SAVED.feats))st.feats=new Set(SAVED.feats.filter(k=>FEATS[k]));
+  if(SAVED.fx)$('fx').value=SAVED.fx;
+  if(SAVED.theme)document.documentElement.dataset.theme=SAVED.theme;
+}
+function save(){
+  try{localStorage.setItem(KEY,JSON.stringify({...st,series:[...st.series],feats:[...st.feats],fx:fx(),theme:document.documentElement.dataset.theme||''}));}catch(e){}
+}
 
 /* ---------- build controls ---------- */
 const chips=[];
@@ -342,7 +357,7 @@ chip($('fBasis'),'以員工價計',()=>st.basis==='e',()=>{st.basis='e';});
 chip($('fBasis'),'以市價計',()=>st.basis==='m',()=>{st.basis='m';});
 
 const PRESETS=[
-  {id:'all',l:'全部車款',set:s=>{}},
+  {id:'all',l:'預設條件（AT）',set:s=>{}},
   {id:'cheap',l:'最省預算',set:s=>{s.key='price';s.dir=1;}},
   {id:'value',l:'日常平衡（AT・≤90萬）',set:s=>{s.trans='AT';s.budget=90;s.key='pct';s.dir=-1;}},
   {id:'safe',l:'安全科技（TSS 3.0）',set:s=>{s.feats=new Set(['tss']);s.key='price';s.dir=1;}},
@@ -362,6 +377,7 @@ $('theme').addEventListener('click',()=>{
   const r=document.documentElement;
   const dark=(r.dataset.theme==='dark')||(!r.dataset.theme&&matchMedia('(prefers-color-scheme:dark)').matches);
   r.dataset.theme=dark?'light':'dark';
+  save();
 });
 
 function syncAll(){
@@ -409,6 +425,7 @@ const featTags=d=>d.feat.map(k=>`<span class="tag f">${FEATS[k].short}</span>`).
 
 /* ---------- render ---------- */
 function render(){
+  save();
   const R=rows(), f=fx();
   if(!R.length){
     $('kpis').innerHTML='';
@@ -478,7 +495,7 @@ function render(){
     st.preset='';syncAll();
   }));
 }
-st.preset='all';
+if(!SAVED)st.preset='all';
 syncAll();
 </script>
 </body>
