@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Toyota 皮卡雙排 28 款員工價與市場價比較：折讓率、價差、顏色加價與台幣概算。">
+<meta name="description" content="Toyota 皮卡雙排 28 款員工價與市場價比較：預算、驅動、底盤、配備快速選車，附折讓率與台幣概算。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="泰國皮卡購車分析儀表">
-<meta property="og:description" content="員工價 vs 市場價，28 款雙排價差一次看。">
+<meta property="og:description" content="員工價 vs 市場價，預算、驅動、配備快速選車。">
 <meta property="og:image" content="https://steven4dev.github.io/thailand/2611-hilux/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -19,21 +19,21 @@
 :root{
   color-scheme:light;
   --page:#f9f9f9; --surface:#ffffff; --ink:#191919; --ink2:#666666;
-  --grid:#e7e7e7; --axis:#c2c2c2; --border:rgba(11,11,11,.10); --good:#006c10;
+  --grid:#e7e7e7; --axis:#c2c2c2; --border:rgba(11,11,11,.10); --good:#006c10; --accent:#e0572a;
   --s1:#257de0; --s2:#f47230; --s3:#00b894;
 }
 @media (prefers-color-scheme:dark){
   :root:where(:not([data-theme="light"])){
     color-scheme:dark;
     --page:#0b0b0b; --surface:#191919; --ink:#efefef; --ink2:#9c9c9c;
-    --grid:#303030; --axis:#474747; --border:rgba(255,255,255,.10); --good:#53c556;
+    --grid:#303030; --axis:#474747; --border:rgba(255,255,255,.10); --good:#53c556; --accent:#f0794f;
     --s1:#338ced; --s2:#e76624; --s3:#00a888;
   }
 }
 :root[data-theme="dark"]{
   color-scheme:dark;
   --page:#0b0b0b; --surface:#191919; --ink:#efefef; --ink2:#9c9c9c;
-  --grid:#303030; --axis:#474747; --border:rgba(255,255,255,.10); --good:#53c556;
+  --grid:#303030; --axis:#474747; --border:rgba(255,255,255,.10); --good:#53c556; --accent:#f0794f;
   --s1:#338ced; --s2:#e76624; --s3:#00a888;
 }
 *{box-sizing:border-box}
@@ -48,20 +48,37 @@ button,select,input{font:inherit;color:var(--ink)}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;margin-top:16px}
 .card h2{font-size:16px;margin:0 0 2px}
 .card .hint{color:var(--ink2);font-size:12.5px;margin:0 0 12px}
-.filters{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
-.fg{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
-.fg>label.t{color:var(--ink2);font-size:12.5px;margin-right:2px}
+.sec-t{font-size:12.5px;color:var(--ink2);margin:14px 0 6px;font-weight:600}
+.sec-t:first-of-type{margin-top:0}
+.fg{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:8px}
+.fg>label.t{color:var(--ink2);font-size:12.5px;min-width:44px}
 .chip{border:1px solid var(--border);background:var(--surface);border-radius:999px;padding:4px 12px;cursor:pointer;font-size:13px;display:inline-flex;gap:6px;align-items:center}
-.chip[aria-pressed="true"]{border-color:var(--ink);font-weight:600}
+.chip[aria-pressed="true"]{border-color:var(--ink);font-weight:600;background:color-mix(in srgb,var(--ink) 6%,transparent)}
 .chip .sw{width:10px;height:10px;border-radius:50%;display:inline-block}
 .chip:not([aria-pressed="true"]) .sw{opacity:.35}
-.fxbox input,.fg select{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:4px 8px}
-.fxbox input{width:72px}
+.chip.preset{border-color:var(--accent);color:var(--ink)}
+.chip.preset[aria-pressed="true"]{background:var(--accent);color:#fff;border-color:var(--accent)}
+.budget{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center}
+.budget input[type=range]{flex:1 1 240px;accent-color:var(--accent)}
+.budget .bl{font-size:14px;font-weight:600;min-width:260px}
+.budget .bl small{color:var(--ink2);font-weight:400}
+.tools{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;margin-top:6px}
+.tools select,.tools input[type=number]{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:4px 8px}
+.tools input[type=number]{width:72px}
+.tools label{color:var(--ink2);font-size:12.5px}
 .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:16px}
 .kpi{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px}
 .kpi .k{color:var(--ink2);font-size:12.5px}
 .kpi .v{font-size:24px;font-weight:650;margin-top:2px}
 .kpi .d{color:var(--ink2);font-size:12px}
+.recs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.rec{border:1px solid var(--border);border-radius:10px;padding:12px 14px;position:relative}
+.rec .rt{font-size:12px;color:var(--accent);font-weight:700;margin-bottom:2px}
+.rec .rn{font-weight:650;font-size:15px;line-height:1.3}
+.rec .rd{color:var(--ink2);font-size:12.5px;margin-top:2px}
+.rec .rp{font-size:13.5px;margin-top:6px}
+.tag{display:inline-block;border:1px solid var(--border);border-radius:6px;padding:0 6px;font-size:11.5px;color:var(--ink2);margin:2px 4px 0 0;white-space:nowrap}
+.tag.f{border-color:var(--accent);color:var(--accent)}
 .legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--ink2);margin-bottom:10px}
 .legend span{display:inline-flex;align-items:center;gap:6px}
 .lg-dot{width:11px;height:11px;border-radius:50%;display:inline-block}
@@ -71,7 +88,7 @@ button,select,input{font:inherit;color:var(--ink)}
 .axis .ticks b{position:absolute;transform:translateX(-50%);font-weight:400;white-space:nowrap}
 .axis .ticks b:first-child{transform:none}
 .axis .ticks b:last-child{transform:translateX(-100%)}
-.row{display:grid;grid-template-columns:minmax(150px,38%) 1fr;align-items:center;min-height:30px;border-top:1px solid transparent}
+.row{display:grid;grid-template-columns:minmax(150px,38%) 1fr;align-items:center;min-height:30px}
 .row:hover{background:color-mix(in srgb,var(--ink) 4%,transparent)}
 .lbl{padding:2px 8px 2px 0;line-height:1.25;min-width:0}
 .lbl b{font-weight:600;font-size:13px;display:block}
@@ -88,10 +105,10 @@ button,select,input{font:inherit;color:var(--ink)}
 .bar{position:absolute;left:0;top:9px;height:12px;border-radius:0 4px 4px 0}
 .bval{position:absolute;top:5px;font-size:12px;white-space:nowrap;padding-left:6px}
 .tablewrap{overflow-x:auto}
-table{border-collapse:collapse;width:100%;font-size:13px;min-width:760px}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:980px}
 th,td{padding:7px 8px;border-bottom:1px solid var(--grid);text-align:right;white-space:nowrap}
-th{color:var(--ink2);font-weight:500;cursor:pointer;user-select:none;position:sticky;top:0;background:var(--surface)}
-th:nth-child(-n+4),td:nth-child(-n+4){text-align:left}
+th{color:var(--ink2);font-weight:500;cursor:pointer;user-select:none;background:var(--surface)}
+th:nth-child(-n+6),td:nth-child(-n+6),th:last-child,td:last-child{text-align:left}
 td.pos{color:var(--good);font-weight:600}
 .badge{display:inline-flex;align-items:center;gap:6px}
 .badge i{width:9px;height:9px;border-radius:50%;display:inline-block}
@@ -101,8 +118,9 @@ td.pos{color:var(--good);font-weight:600}
 .ins p{margin:0;color:var(--ink2)}
 .note{font-size:12.5px;color:var(--ink2)}
 .note li{margin:3px 0}
+.note a{color:var(--ink);text-decoration:underline}
 #tip{position:fixed;z-index:10;pointer-events:none;background:var(--ink);color:var(--surface);
-  padding:8px 10px;border-radius:8px;font-size:12.5px;line-height:1.5;display:none;max-width:260px}
+  padding:8px 10px;border-radius:8px;font-size:12.5px;line-height:1.5;display:none;max-width:280px}
 #tip b{display:block;margin-bottom:2px}
 .empty{padding:24px;text-align:center;color:var(--ink2)}
 @media (max-width:640px){
@@ -110,6 +128,7 @@ td.pos{color:var(--good);font-weight:600}
   .axis>div:first-child{display:none}
   .lbl{padding-bottom:0}
   .row{padding:4px 0}
+  .budget .bl{min-width:0}
 }
 </style>
 </head>
@@ -124,24 +143,55 @@ td.pos{color:var(--good);font-weight:600}
   </header>
 
   <section class="card">
-    <div class="filters">
-      <div class="fg" id="fSeries"><label class="t">系列</label></div>
-      <div class="fg" id="fTrans"><label class="t">排檔</label></div>
-      <div class="fg" id="fColor"><label class="t">顏色</label></div>
-      <div class="fg"><label class="t" for="sortSel">排序</label>
-        <select id="sortSel">
-          <option value="idx|1">原始順序</option>
-          <option value="e|1">員工價 低→高</option>
-          <option value="e|-1">員工價 高→低</option>
-          <option value="pct|-1">折讓率 高→低</option>
-          <option value="diff|-1">折讓金額 高→低</option>
-        </select>
-      </div>
-      <div class="fg fxbox"><label class="t" for="fx">匯率 1 THB ≈</label><input id="fx" type="number" step="0.01" min="0.5" max="1.5" value="0.97"><span class="note">TWD</span></div>
+    <h2>快速選車</h2>
+    <p class="hint">先點「用途快選」，或自行調整預算、驅動、外觀與配備；下方結果即時更新。</p>
+
+    <div class="sec-t">用途快選</div>
+    <div class="fg" id="fPreset"></div>
+
+    <div class="sec-t">預算</div>
+    <div class="budget">
+      <div class="fg" id="fBasis" style="margin:0"></div>
+      <input id="budget" type="range" min="60" max="140" step="5" value="140" aria-label="預算上限（萬泰銖）">
+      <div class="bl" id="budgetLbl"></div>
+    </div>
+
+    <div class="sec-t">車型條件</div>
+    <div class="fg" id="fSeries"><label class="t">系列</label></div>
+    <div class="fg" id="fDrive"><label class="t">驅動</label></div>
+    <div class="fg" id="fFloor"><label class="t">底盤</label></div>
+    <div class="fg" id="fEng"><label class="t">引擎</label></div>
+    <div class="fg" id="fTrans"><label class="t">排檔</label></div>
+
+    <div class="sec-t">外觀</div>
+    <div class="fg" id="fColor"><label class="t">顏色</label></div>
+    <div class="fg" id="fStyle"><label class="t">風格</label></div>
+
+    <div class="sec-t">已查證配備（可複選，需同時具備）</div>
+    <div class="fg" id="fFeat"></div>
+
+    <div class="tools">
+      <label for="sortSel">排序</label>
+      <select id="sortSel">
+        <option value="idx|1">原始順序</option>
+        <option value="price|1">價格 低→高</option>
+        <option value="price|-1">價格 高→低</option>
+        <option value="pct|-1">折讓率 高→低</option>
+        <option value="diff|-1">折讓金額 高→低</option>
+        <option value="nfeat|-1">已查證配備數 多→少</option>
+      </select>
+      <label for="fx">匯率 1 THB ≈</label><input id="fx" type="number" step="0.01" min="0.5" max="1.5" value="0.97"><span class="note">TWD</span>
+      <button class="btn" id="reset" type="button">重設全部條件</button>
     </div>
   </section>
 
   <div class="kpis" id="kpis"></div>
+
+  <section class="card">
+    <h2>符合條件的推薦</h2>
+    <p class="hint">依目前篩選結果挑出三種角度的代表車款。</p>
+    <div class="recs" id="recs"></div>
+  </section>
 
   <section class="card">
     <h2>員工價 → 市場價 價差圖</h2>
@@ -159,7 +209,7 @@ td.pos{color:var(--good);font-weight:600}
 
   <section class="card">
     <h2>明細表</h2>
-    <p class="hint">點欄位標題可排序；「員工價約合」依上方匯率試算，單位為萬元台幣。</p>
+    <p class="hint">點欄位標題可排序；「員工價約合」依匯率試算，單位為萬元台幣。「已查證配備」只列有資料來源的項目，空白代表未查證，並非沒有。</p>
     <div class="tablewrap"><table id="tbl"></table></div>
   </section>
 
@@ -168,21 +218,30 @@ td.pos{color:var(--good);font-weight:600}
     <div class="insights">
       <div class="ins"><h3>折讓幅度</h3><p>員工價比市價低約 10.4%–15.6%（約 10.9–14.4 萬泰銖）。舊款 Revo 比例最高，新款越高階比例越低，但折讓金額反而最大。</p></div>
       <div class="ins"><h3>顏色加價</h3><p>員工價中，金屬漆比素色貴 6,527；珍珠白（或特殊色）再比金屬漆貴約 9,100–9,300。市價多半不分顏色，只有 4TREX 珍珠白加 1 萬，因此選素色最划算。</p></div>
-      <div class="ins"><h3>新舊款價差</h3><p>入門款員工價約差 15 萬（Revo Entry MT 627,983；Travo Smart MT 777,462）。推測是 2.4 升級 2.8 引擎與配備差異，車身高度與配備請向業務確認。</p></div>
-      <div class="ins"><h3>Travo 階梯加價（員工價）</h3><p>Smart → Premium 約 +4.4 萬；Premium → Overland 約 +9.3 萬；Overland → Overland Plus 約 +6.6 萬；4TREX 比同級 Prerunner 約貴 13.8 萬（推測為四驅版，需確認）。</p></div>
-      <div class="ins"><h3>性價比候選</h3><p>Travo 中 Prerunner Premium AT 折讓率最高（13.1%），可優先比較配備；預算有限時 Revo Z Edition 折讓率達 14%–15.6%。</p></div>
-      <div class="ins"><h3>匯率參考</h3><p>台灣銀行 10 月底泰幣即期匯率約 0.95–0.99，本頁預設 0.97，僅供概算，請以實際成交匯率為準。</p></div>
+      <div class="ins"><h3>新舊款差異</h3><p>Revo Z Edition 為低底盤、2.4L（150 PS）；Travo 全數為高底盤、2.8L（204 PS／500 Nm）。入門款員工價約差 15 萬，主要來自底盤、引擎與配備的差異。</p></div>
+      <div class="ins"><h3>驅動與階梯加價</h3><p>Prerunner＝2WD，4TREX＝4WD。員工價 Smart → Premium 約 +4.4 萬；Premium → Overland 約 +9.3 萬；Overland → Overland Plus 約 +6.6 萬；4TREX 比同級 Prerunner 約貴 13.8 萬。</p></div>
+      <div class="ins"><h3>主動安全門檻</h3><p>查得 TSS 3.0 與電動方向盤只出現在 Overland Plus 以上，若重視主動安全，最低要選 Overland Plus（員工價約 103–123 萬）。</p></div>
+      <div class="ins"><h3>性價比候選</h3><p>Travo 中 Prerunner Premium AT 折讓率最高（13.1%）；預算有限時 Revo Z Edition 折讓率達 14%–15.6%，但為低底盤、動力較小。</p></div>
     </div>
   </section>
 
   <section class="card">
-    <h2>使用前提醒</h2>
+    <h2>規格資料來源與提醒</h2>
     <ul class="note">
-      <li>資料來源為使用者提供的價目表截圖，截圖上下緣有被切掉的列，車型清單可能不完整。</li>
-      <li>員工價通常僅限車廠員工或其親屬；若不具資格，請以市場價為準。</li>
-      <li>價格是否含稅、牌照、保險與手續費未標示，落地價需另行向經銷商確認。</li>
-      <li>泰國為右駕車，帶回台灣掛牌限制很多，不建議。</li>
-      <li>本頁為資訊整理，不構成財務或購車建議。</li>
+      <li>價格來自使用者提供的價目表截圖，截圖上下緣有被切掉的列，車型清單可能不完整；員工價通常僅限車廠員工或其親屬，不具資格請以市價為準。</li>
+      <li>配備只列有查到來源的項目：TSS 3.0／電動方向盤（Overland Plus）、360° 環景、18 吋鋁圈、12.3 吋數位儀表（Overland 系列）。其他等級的配備請向經銷商索取規格表。</li>
+      <li>GR Sport 的底盤高度未能查證，篩選「底盤」時不會被歸入低或高。Travo 離地間隙約 219–225 mm，車長×寬×高約 5,320×1,885×1,815 mm，軸距 3,085 mm。</li>
+      <li>「外觀風格」為本頁自訂分類：實用（Entry／Smart）、都會（Mid／Premium）、探險（Overland 系列）、運動（GR Sport）。</li>
+      <li>價格是否含稅、牌照、保險與手續費未標示；泰國為右駕車，帶回台灣掛牌限制很多，不建議。本頁為資訊整理，不構成財務或購車建議。</li>
+      <li>來源：
+        <a href="https://news.tvbs.com.tw/cars/3041559" target="_blank" rel="noopener">TVBS（Travo 車型編成）</a>、
+        <a href="https://autolifethailand.tv/photo-spec-toyota-hilux-travo-overland-4trex-thailand/" target="_blank" rel="noopener">Autolife（Prerunner=2WD、4TREX=4WD、Revo 低底盤／Travo 高底盤）</a>、
+        <a href="https://paultan.org/2026/03/24/2026-toyota-hilux-travo-travo-e-unveiled-in-bangkok-204-ps-2-8-diesel-or-240-km-wltp-ev-rm95k-180k/" target="_blank" rel="noopener">Paultan（TSS 3.0／EPS 配置）</a>、
+        <a href="https://www.khaosod.co.th/car-vehicle/news_10028009" target="_blank" rel="noopener">Khaosod（Overland 配備）</a>、
+        <a href="https://autolifethailand.tv/?p=155650" target="_blank" rel="noopener">Autolife（360° 環景）</a>、
+        <a href="https://zigwheels.co.th/en/new-cars/toyota/hilux-revo-z-edition/specifications" target="_blank" rel="noopener">Zigwheels（Revo Z Edition 規格）</a>、
+        <a href="https://www.zigwheels.co.th/en/new-cars/toyota/hilux-travo-overland/specifications" target="_blank" rel="noopener">Zigwheels（Travo 尺寸）</a>
+      </li>
     </ul>
   </section>
 </div>
@@ -190,9 +249,14 @@ td.pos{color:var(--good);font-weight:600}
 
 <script>
 const SERIES = {
-  REVO:  {name:'Revo 第8代 (IMP’25)', cv:'--s1'},
+  REVO:  {name:'Revo 第8代 (IMP’25)',      cv:'--s1'},
   PRE:   {name:'Travo 第9代 Prerunner 2.8', cv:'--s2'},
   TREX:  {name:'Travo 第9代 4TREX 2.8',     cv:'--s3'}
+};
+const FEATS = {
+  tss:{label:'TSS 3.0 主動安全', short:'TSS 3.0'},
+  cam:{label:'360° 環景影像',    short:'360°環景'},
+  lux:{label:'18吋鋁圈＋12.3吋數位儀表', short:'18吋＋12.3吋儀表'}
 };
 // s=系列, n=車型, t=排檔, c=顏色, e=員工價, m=市場價
 const RAW = [
@@ -225,44 +289,106 @@ const RAW = [
  ['TREX','4TREX Overland Plus','AT','珍珠/特殊色',1232212,1376000],
  ['TREX','4TREX Overland Plus','AT','金屬',1223117,1366000]
 ];
-const DATA = RAW.map((r,i)=>({idx:i,s:r[0],n:r[1],t:r[2],c:r[3],e:r[4],m:r[5],diff:r[5]-r[4],pct:(r[5]-r[4])/r[5]*100}));
+function derive(r,i){
+  const [s,n,t,c,e,m]=r;
+  const isZ=n.startsWith('Z Edition'), isGR=n.startsWith('GR Sport');
+  const ovl=n.includes('Overland'), plus=n.includes('Overland Plus');
+  const feat=[]; if(plus)feat.push('tss'); if(ovl)feat.push('cam','lux');
+  let style='都會';
+  if(isGR)style='運動'; else if(ovl)style='探險'; else if(/Entry|Smart/.test(n))style='實用';
+  return {idx:i,s,n,t,c,e,m,diff:m-e,pct:(m-e)/m*100,
+    drive:s==='TREX'?'4WD':'2WD',
+    floor:isZ?'低底盤':(isGR?'待確認':'高底盤'),
+    eng:isZ?'2.4L':'2.8L',
+    hp:isZ?'150 PS／344 Nm':(s==='REVO'?'2.8L 柴油':'204 PS／500 Nm'),
+    style,feat,nfeat:feat.length};
+}
+const DATA = RAW.map(derive);
 
-const st = {series:new Set(Object.keys(SERIES)), trans:'全部', color:'全部', key:'idx', dir:1};
+const fresh = () => ({series:new Set(Object.keys(SERIES)),drive:'全部',floor:'全部',eng:'全部',trans:'全部',
+  color:'全部',style:'全部',feats:new Set(),budget:140,basis:'e',key:'idx',dir:1,preset:''});
+let st = fresh();
 const $ = id => document.getElementById(id);
 const fmt = n => n.toLocaleString('en-US');
-const wan = (n,fx) => (n*fx/10000).toFixed(1)+' 萬';
+const wan = (n,f) => (n*f/10000).toFixed(1)+' 萬';
 const fx = () => parseFloat($('fx').value) || 0.97;
+const priceOf = d => d[st.basis];
+const basisName = () => st.basis==='e'?'員工價':'市價';
 
-/* ---------- filters ---------- */
-function mkChips(host, items, isActive, onClick, swatch){
-  items.forEach(it=>{
-    const b=document.createElement('button');
-    b.type='button'; b.className='chip';
-    b.innerHTML=(swatch?`<span class="sw" style="background:var(${swatch(it)})"></span>`:'')+it.label;
-    b.addEventListener('click',()=>{onClick(it);sync();render();});
-    b._it=it; b._act=isActive; host.appendChild(b);
-  });
+/* ---------- build controls ---------- */
+const chips=[];
+function chip(host,label,isOn,onClick,extraClass,sw){
+  const b=document.createElement('button');
+  b.type='button'; b.className='chip'+(extraClass?' '+extraClass:'');
+  b.innerHTML=(sw?`<span class="sw" style="background:var(${sw})"></span>`:'')+label;
+  b.addEventListener('click',()=>{onClick();st.preset=extraClass==='preset'?st.preset:'';syncAll();});
+  b._on=isOn; chips.push(b); host.appendChild(b); return b;
 }
-function sync(){
-  document.querySelectorAll('.chip').forEach(b=>b.setAttribute('aria-pressed',b._act(b._it)?'true':'false'));
+function single(hostId,key,opts){
+  opts.forEach(o=>{const v=typeof o==='string'?o:o.v, l=typeof o==='string'?o:o.l;
+    chip($(hostId),l,()=>st[key]===v,()=>{st[key]=v;});});
 }
-mkChips($('fSeries'),Object.keys(SERIES).map(k=>({k,label:SERIES[k].name})),
-  it=>st.series.has(it.k),
-  it=>{st.series.has(it.k)?st.series.delete(it.k):st.series.add(it.k);},
-  it=>SERIES[it.k].cv);
-mkChips($('fTrans'),['全部','MT','AT'].map(v=>({v,label:v})),it=>st.trans===it.v,it=>{st.trans=it.v;});
-mkChips($('fColor'),['全部','素色','金屬','珍珠/特殊色'].map(v=>({v,label:v})),it=>st.color===it.v,it=>{st.color=it.v;});
+Object.keys(SERIES).forEach(k=>chip($('fSeries'),SERIES[k].name,()=>st.series.has(k),
+  ()=>{st.series.has(k)?st.series.delete(k):st.series.add(k);},'',SERIES[k].cv));
+single('fDrive','drive',['全部',{v:'2WD',l:'2WD（Prerunner）'},{v:'4WD',l:'4WD（4TREX）'}]);
+single('fFloor','floor',['全部','低底盤','高底盤']);
+single('fEng','eng',['全部',{v:'2.4L',l:'2.4L（150 PS）'},{v:'2.8L',l:'2.8L'}]);
+single('fTrans','trans',['全部','MT','AT']);
+single('fColor','color',['全部','素色','金屬','珍珠/特殊色']);
+single('fStyle','style',['全部','實用','都會','探險','運動']);
+Object.keys(FEATS).forEach(k=>chip($('fFeat'),FEATS[k].label,()=>st.feats.has(k),
+  ()=>{st.feats.has(k)?st.feats.delete(k):st.feats.add(k);}));
+chip($('fBasis'),'以員工價計',()=>st.basis==='e',()=>{st.basis='e';});
+chip($('fBasis'),'以市價計',()=>st.basis==='m',()=>{st.basis='m';});
+
+const PRESETS=[
+  {id:'all',l:'全部車款',set:s=>{}},
+  {id:'cheap',l:'最省預算',set:s=>{s.key='price';s.dir=1;}},
+  {id:'value',l:'日常平衡（AT・≤90萬）',set:s=>{s.trans='AT';s.budget=90;s.key='pct';s.dir=-1;}},
+  {id:'safe',l:'安全科技（TSS 3.0）',set:s=>{s.feats=new Set(['tss']);s.key='price';s.dir=1;}},
+  {id:'off',l:'越野／載重（4WD）',set:s=>{s.drive='4WD';s.key='price';s.dir=1;}},
+  {id:'sport',l:'運動外觀（GR Sport）',set:s=>{s.style='運動';}}
+];
+PRESETS.forEach(p=>{
+  const b=chip($('fPreset'),p.l,()=>st.preset===p.id,()=>{
+    const keepFx=fx(); st=fresh(); p.set(st); st.preset=p.id; $('fx').value=keepFx;
+  },'preset');
+});
+$('budget').addEventListener('input',e=>{st.budget=+e.target.value;st.preset='';syncAll();});
 $('sortSel').addEventListener('change',e=>{const [k,d]=e.target.value.split('|');st.key=k;st.dir=+d;render();});
 $('fx').addEventListener('input',render);
+$('reset').addEventListener('click',()=>{const f=fx();st=fresh();st.preset='all';$('fx').value=f;syncAll();});
 $('theme').addEventListener('click',()=>{
   const r=document.documentElement;
   const dark=(r.dataset.theme==='dark')||(!r.dataset.theme&&matchMedia('(prefers-color-scheme:dark)').matches);
   r.dataset.theme=dark?'light':'dark';
 });
 
+function syncAll(){
+  chips.forEach(b=>b.setAttribute('aria-pressed',b._on()?'true':'false'));
+  $('budget').value=st.budget;
+  const f=fx();
+  $('budgetLbl').innerHTML=st.budget>=140
+    ?`${basisName()}上限：<b>不限</b>`
+    :`${basisName()}上限：<b>≤ ${st.budget} 萬泰銖</b> <small>（≈ ${(st.budget*f).toFixed(1)} 萬台幣）</small>`;
+  const sv=st.key+'|'+st.dir, sel=$('sortSel');
+  if([...sel.options].some(o=>o.value===sv))sel.value=sv;
+  render();
+}
+
 function rows(){
-  const out=DATA.filter(d=>st.series.has(d.s)&&(st.trans==='全部'||d.t===st.trans)&&(st.color==='全部'||d.c===st.color));
-  out.sort((a,b)=>(a[st.key]-b[st.key])*st.dir||a.idx-b.idx);
+  const val=d=>st.key==='price'?priceOf(d):d[st.key];
+  const out=DATA.filter(d=>
+    st.series.has(d.s)&&
+    (st.drive==='全部'||d.drive===st.drive)&&
+    (st.floor==='全部'||d.floor===st.floor)&&
+    (st.eng==='全部'||d.eng===st.eng)&&
+    (st.trans==='全部'||d.t===st.trans)&&
+    (st.color==='全部'||d.c===st.color)&&
+    (st.style==='全部'||d.style===st.style)&&
+    [...st.feats].every(k=>d.feat.includes(k))&&
+    (st.budget>=140||priceOf(d)<=st.budget*10000));
+  out.sort((a,b)=>(val(a)-val(b))*st.dir||a.idx-b.idx);
   return out;
 }
 
@@ -270,34 +396,43 @@ function rows(){
 const tip=$('tip');
 function tipHtml(d){
   const f=fx();
-  return `<b>${d.n} ${d.t}</b>${SERIES[d.s].name} · ${d.c}<br>員工價 ${fmt(d.e)}（≈${wan(d.e,f)}）<br>市價 ${fmt(d.m)}<br>差額 ${fmt(d.diff)}（${d.pct.toFixed(1)}%）`;
+  return `<b>${d.n} ${d.t}</b>${SERIES[d.s].name} · ${d.c}<br>${d.drive}｜${d.floor}｜${d.hp}<br>員工價 ${fmt(d.e)}（≈${wan(d.e,f)}）<br>市價 ${fmt(d.m)}<br>差額 ${fmt(d.diff)}（${d.pct.toFixed(1)}%）`;
 }
 function bindTip(el,d){
   const show=ev=>{tip.innerHTML=tipHtml(d);tip.style.display='block';move(ev);};
-  const move=ev=>{const x=Math.min(ev.clientX+14,innerWidth-270);tip.style.left=Math.max(8,x)+'px';tip.style.top=(ev.clientY+14)+'px';};
+  const move=ev=>{const x=Math.min(ev.clientX+14,innerWidth-290);tip.style.left=Math.max(8,x)+'px';tip.style.top=(ev.clientY+14)+'px';};
   el.addEventListener('mouseenter',show);el.addEventListener('mousemove',move);
   el.addEventListener('mouseleave',()=>tip.style.display='none');
   el.addEventListener('click',ev=>{show(ev);setTimeout(()=>tip.style.display='none',2600);});
 }
+const featTags=d=>d.feat.map(k=>`<span class="tag f">${FEATS[k].short}</span>`).join('');
 
 /* ---------- render ---------- */
 function render(){
   const R=rows(), f=fx();
-  // KPI
   if(!R.length){
     $('kpis').innerHTML='';
-    ['dumbbell','discount'].forEach(i=>$(i).innerHTML='<div class="empty">沒有符合條件的車款，請調整篩選。</div>');
+    $('recs').innerHTML='<div class="empty">沒有符合條件的車款，請放寬預算或取消部分條件。</div>';
+    ['dumbbell','discount'].forEach(i=>$(i).innerHTML='<div class="empty">沒有符合條件的車款。</div>');
     $('tbl').innerHTML='';$('ticks').innerHTML='';$('legend1').innerHTML='';return;
   }
-  const minE=R.reduce((a,b)=>b.e<a.e?b:a), maxD=R.reduce((a,b)=>b.diff>a.diff?b:a), maxP=R.reduce((a,b)=>b.pct>a.pct?b:a);
+  const minP=R.reduce((a,b)=>priceOf(b)<priceOf(a)?b:a), maxD=R.reduce((a,b)=>b.diff>a.diff?b:a), maxP=R.reduce((a,b)=>b.pct>a.pct?b:a);
   const avgP=R.reduce((s,d)=>s+d.pct,0)/R.length, avgD=R.reduce((s,d)=>s+d.diff,0)/R.length;
   $('kpis').innerHTML=[
     ['符合車款',R.length+' 款',`共 ${DATA.length} 款`],
-    ['最低員工價',fmt(minE.e),`${minE.n} ${minE.t} · ≈${wan(minE.e,f)}`],
+    [`最低${basisName()}`,fmt(priceOf(minP)),`${minP.n} ${minP.t} · ≈${wan(priceOf(minP),f)}`],
     ['平均折讓率',avgP.toFixed(1)+'%',`平均省 ${fmt(Math.round(avgD))}`],
-    ['最大折讓金額',fmt(maxD.diff),`${maxD.n} ${maxD.t} ${maxD.c}`],
-    ['最高折讓率',maxP.pct.toFixed(1)+'%',`${maxP.n} ${maxP.t} ${maxP.c}`]
+    ['最大折讓金額',fmt(maxD.diff),`${maxD.n} ${maxD.t} ${maxD.c}`]
   ].map(k=>`<div class="kpi"><div class="k">${k[0]}</div><div class="v">${k[1]}</div><div class="d">${k[2]}</div></div>`).join('');
+
+  // recommendations
+  const bestF=R.filter(d=>d.nfeat>0).sort((a,b)=>b.nfeat-a.nfeat||priceOf(a)-priceOf(b))[0];
+  const recCard=(title,d,extra)=>d?`<div class="rec"><div class="rt">${title}</div><div class="rn">${d.n} ${d.t}</div>
+    <div class="rd">${SERIES[d.s].name} · ${d.c} · ${d.drive}／${d.floor}／${d.eng}</div>
+    <div class="rp">員工價 <b>${fmt(d.e)}</b>（≈${wan(d.e,f)}）<br>市價 ${fmt(d.m)}｜省 ${fmt(d.diff)}（${d.pct.toFixed(1)}%）</div>
+    <div>${extra||''}${featTags(d)}</div></div>`
+    :`<div class="rec"><div class="rt">${title}</div><div class="rd">目前篩選結果中沒有已查證的配備差異可比較。</div></div>`;
+  $('recs').innerHTML=recCard('最省預算（'+basisName()+'最低）',minP)+recCard('折讓率最高',maxP)+recCard('已查證配備最完整',bestF);
 
   // legend
   $('legend1').innerHTML=Object.keys(SERIES).map(k=>`<span><i class="lg-dot" style="background:var(${SERIES[k].cv})"></i>${SERIES[k].name}</span>`).join('')
@@ -310,7 +445,7 @@ function render(){
   R.forEach(d=>{
     const row=document.createElement('div');row.className='row';
     const col=`var(${SERIES[d.s].cv})`;
-    row.innerHTML=`<div class="lbl"><b>${d.n} ${d.t}</b><span>${d.c} · ${fmt(d.e)} → ${fmt(d.m)}</span></div>
+    row.innerHTML=`<div class="lbl"><b>${d.n} ${d.t}</b><span>${d.c} · ${d.drive} · ${fmt(d.e)} → ${fmt(d.m)}</span></div>
       <div class="track"><i class="rail" style="left:${pos(d.e)}%;width:${pos(d.m)-pos(d.e)}%;background:${col}"></i>
       <i class="dot e" style="left:${pos(d.e)}%;background:${col}"></i><i class="dot m" style="left:${pos(d.m)}%"></i></div>`;
     bindTip(row,d);dh.appendChild(row);
@@ -318,7 +453,6 @@ function render(){
 
   // discount bars
   const dd=$('discount'); dd.innerHTML='';
-  
   [...R].sort((a,b)=>b.pct-a.pct).forEach(d=>{
     const row=document.createElement('div');row.className='row';
     const w=d.pct/16*68;
@@ -329,21 +463,23 @@ function render(){
   });
 
   // table
-  const cols=[['s','系列'],['n','車型'],['t','排檔'],['c','顏色'],['e','員工價'],['m','市價'],['diff','差額'],['pct','折讓率'],['ntd','員工價約合']];
-  const arrow=k=>st.key===k?(st.dir>0?' ▲':' ▼'):'';
-  $('tbl').innerHTML='<thead><tr>'+cols.map(c=>`<th data-k="${c[0]}">${c[1]}${arrow(c[0]==='ntd'?'e':c[0])}</th>`).join('')+'</tr></thead><tbody>'
+  const cols=[['s','系列'],['n','車型'],['t','排檔'],['c','顏色'],['drive','驅動'],['floor','底盤'],['eng','引擎'],['e','員工價'],['m','市價'],['diff','差額'],['pct','折讓率'],['ntd','員工價約合'],['feat','已查證配備']];
+  const sortable=['e','m','diff','pct'];
+  const arrow=k=>{const cur=(st.key==='price'?st.basis:st.key);return cur===(k==='ntd'?'e':k)&&sortable.concat('ntd').includes(k)?(st.dir>0?' ▲':' ▼'):'';};
+  $('tbl').innerHTML='<thead><tr>'+cols.map(c=>`<th data-k="${c[0]}">${c[1]}${arrow(c[0])}</th>`).join('')+'</tr></thead><tbody>'
    +R.map(d=>`<tr><td><span class="badge"><i style="background:var(${SERIES[d.s].cv})"></i>${SERIES[d.s].name}</span></td>
-     <td>${d.n}</td><td>${d.t}</td><td>${d.c}</td><td>${fmt(d.e)}</td><td>${fmt(d.m)}</td>
-     <td class="pos">${fmt(d.diff)}</td><td class="pos">${d.pct.toFixed(1)}%</td><td>${wan(d.e,f)}</td></tr>`).join('')+'</tbody>';
+     <td>${d.n}</td><td>${d.t}</td><td>${d.c}</td><td>${d.drive}</td><td>${d.floor}</td><td>${d.eng}</td>
+     <td>${fmt(d.e)}</td><td>${fmt(d.m)}</td>
+     <td class="pos">${fmt(d.diff)}</td><td class="pos">${d.pct.toFixed(1)}%</td><td>${wan(d.e,f)}</td><td>${featTags(d)||'—'}</td></tr>`).join('')+'</tbody>';
   $('tbl').querySelectorAll('th').forEach(th=>th.addEventListener('click',()=>{
     let k=th.dataset.k; if(k==='ntd')k='e';
-    if(k==='s'||k==='n'||k==='t'||k==='c'){return;}
+    if(!sortable.includes(k))return;
     if(st.key===k)st.dir*=-1;else{st.key=k;st.dir=1;}
-    $('sortSel').value=['idx|1','e|1','e|-1','pct|-1','diff|-1'].includes(st.key+'|'+st.dir)?st.key+'|'+st.dir:$('sortSel').value;
-    render();
+    st.preset='';syncAll();
   }));
 }
-sync();render();
+st.preset='all';
+syncAll();
 </script>
 </body>
 </html>
